@@ -1,0 +1,56 @@
+.hero{
+    background: url('https://res.cloudinary.com/djqsmqs26/video/upload/v1607365473/helping-hand/Pexels_Videos_1723017_1_rtp1hb.mp4');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 500px
+}
+
+video {
+  object-fit: cover;
+  width: 100vw;
+  height: 500px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -10;
+}
+
+.hero>div{
+    text-align: center;
+    margin: 0 auto;
+    width: 80%;
+    padding: 7rem
+}
+
+.hero .button{
+    display: block;
+    margin: 0 auto;
+    border: 1.5px solid white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    width: 90%;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+
+    transition: all 0.5s;
+}
+
+.hero .button:hover{
+    color: #50BCBC;
+    background-color: white;
+}
+
+.info{
+    display: flex;
+    padding: 5rem 1rem;
+    background-color: #EAF3FA;
+    text-align: center
+}
+
+.info p{
+    margin: 0 20px
+}
+
