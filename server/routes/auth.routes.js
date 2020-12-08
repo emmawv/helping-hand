@@ -37,11 +37,10 @@ router.post('/signup', (req, res) => {
             const salt = bcrypt.genSaltSync(10)
             const hashPass = bcrypt.hashSync(password, salt)
 
-            User
-                .create({ email, password: hashPass })
-                .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Signup error' }) : res.status(200).json(newUser)))
-                .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
+            return User.create({ email, password: hashPass })
         })
+        .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Signup error' }) : res.status(200).json(newUser)))
+        .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
 })
 
 

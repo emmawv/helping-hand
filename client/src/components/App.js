@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 import HomePage from './Pages/HomePage/HomePage'
+import PsychList from './Pages/PsychList/PsychList'
 import Navigation from './Layout/Navigation/Navbar'
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
     <>
       <Navigation />
       <Switch>
-        <Route path="/" render={() => <HomePage />}/>
+        <Route path="/" exact render={() => <HomePage />} />
+        <Route path="/psychologists" render={() => <PsychList />} />
       </Switch>
     </>
   )

@@ -29,7 +29,6 @@ const psychologists = [
             },
         },
         timetable: ['10:30', '12:00', '15:00'],
-        problems: [],
         profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607290203/helping-hand/linkedin_profile_picture_tips-1_tiqtud.jpg',
         agesTreated: ['Adultos', 'Adolescentes(14 a 19)', 'Preadolescentes(11 a 13)'],
         role: 'DOC'
@@ -47,7 +46,6 @@ const psychologists = [
             },
         },
         timetable: ['11:15', '13:00', '17:00', '19:00'],
-        problems: [],
         profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607289872/helping-hand/main-qimg-7fb93146f5e4e470f5a590d2fc38be3b_e1bz5s.jpg',
         agesTreated: ['Niños(6 a 10)', 'Niños pequeños/preescolares(0 a 6)'],
         role: 'DOC'
@@ -65,7 +63,6 @@ const psychologists = [
             },
         },
         timetable: ['11:00', '11:45', '13:00', '20:00'],
-        problems: [],
         profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607352533/helping-hand/2018-11-17-Martin-Novak-shutterstock_492835963_o8h8ko.jpg',
         agesTreated: ['Adultos mayores (65+)', 'Adultos', 'Adolescentes(14 a 19)', 'Preadolescentes(11 a 13)', 'Niños(6 a 10)', 'Niños pequeños/preescolares(0 a 6)'],
         role: 'DOC'
@@ -130,7 +127,7 @@ Promise
     })
     .then(() => Psych.findByIdAndUpdate(thePsych[0], { problems: [theProblems[0], theProblems[3], theProblems[7]] }, { new: true }))
     .then(() => Psych.findByIdAndUpdate(thePsych[1], { problems: [theProblems[3], theProblems[5], theProblems[6]] }, { new: true }))
-    .then(() => Psych.findByIdAndUpdate(thePsych[2], { problems: [theProblems[1], theProblems[2], theProblems[8], theProblems[9]] }, { new: true }))
+    .then(() => Psych.findByIdAndUpdate(thePsych[2], { problems: [theProblems[1], theProblems[2], theProblems[7], theProblems[8]] }, { new: true }))
     .then(() => console.log(`You created a DDBB with ${psychologists.length} psychologists in it, ${users.length} users in it and ${problems.length} problems in it`))
     .then(() => mongoose.connection.close())
     .catch((err) => new Error(err))

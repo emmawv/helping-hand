@@ -29,20 +29,15 @@ const psychSchema = new Schema({
         },
     },
     timetables: [String],
-    problems: [String],
+    problems: [{
+        type: Schema.Types.ObjectId,
+        ref: 'problems'
+    }],
     description: String,
     profileImg: {
         type: String,
         require: true
     },
-    appointments: [{
-        userId: {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        },
-        time: String,
-        date: Date
-    }],
     messages: [{
         recipient: {
             type: Schema.Types.ObjectId,

@@ -1,5 +1,6 @@
 import { Component, React } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import './Navbar.css'
 
@@ -8,13 +9,12 @@ export default class Navigation extends Component {
     constructor() {
         super()
         this.state = {
-            background: "transparent",
-            variant: "dark"
+            background: "transparent"
         }
     }
 
     listenScrollEvent = e => {
-        window.scrollY >= 30 ? this.setState({ background: "white", variant: "light" }) : this.setState({ background: "transparent", variant: "dark" })
+        window.scrollY >= 50 ? this.setState({ background: "white" }) : this.setState({ background: "transparent" })
     }
 
     componentDidMount() {
@@ -22,15 +22,16 @@ export default class Navigation extends Component {
     }
 
     render() {
-        console.log(window.scrollY)
         return (
             <div id='navbar'>
-                <Navbar bg={this.state.background} variant={this.state.variant} fixed="top">
+                <Navbar bg={this.state.background} variant="light" fixed="top">
                     <Navbar.Brand href="/">Navbar</Navbar.Brand>
-                    <Nav className="mr-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                    <Nav className="ml-auto">
+                        <Link to="/psychologists">
+                            <Nav.Link as='div'>See all psychologists</Nav.Link>
+                        </Link>
+                        <Nav.Link className='btn btn-outline-white' href="#pricing">Sign In</Nav.Link>
+                        <Nav.Link className='btn btn-white' href="#pricing">Sign Up</Nav.Link>
                     </Nav>
                 </Navbar>
             </div>

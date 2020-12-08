@@ -21,7 +21,7 @@ video {
     text-align: center;
     margin: 0 auto;
     width: 80%;
-    padding: 7rem
+    padding: 10rem
 }
 
 .hero .button{
@@ -39,7 +39,7 @@ video {
 }
 
 .hero .button:hover{
-    color: #50BCBC;
+    color: #2A558C;
     background-color: white;
 }
 
