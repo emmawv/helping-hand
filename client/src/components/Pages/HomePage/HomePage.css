@@ -7,7 +7,7 @@
     height: 500px
 }
 
-video {
+.videoTag {
   object-fit: cover;
   width: 100vw;
   height: 500px;

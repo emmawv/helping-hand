@@ -12,7 +12,7 @@ const psychSchema = new Schema({
     },
     gender: {
         type: String,
-        enum:['Mujer', 'Hombre', 'No binario']
+        enum: ['Mujer', 'Hombre', 'No binario']
     },
     email: {
         type: String,
@@ -32,7 +32,7 @@ const psychSchema = new Schema({
             coordinates: [Number]
         },
     },
-    timetables: [String],
+    timetable: [String],
     problems: [{
         type: Schema.Types.ObjectId,
         ref: 'Problem'

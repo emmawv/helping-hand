@@ -1,0 +1,11 @@
+.psych-details img{
+    height: 350px;
+    width: 250px;
+    object-fit: cover;
+    border-radius: 5px
+}
+
+.psych-details h1{
+    text-align: center;
+    margin-top: 80px
+}

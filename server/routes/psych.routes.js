@@ -3,13 +3,14 @@ const router = express.Router()
 const mongoose = require('mongoose')
 
 const Psych = require('../models/psychologist.model')
+const Problem = require('../models/problems.model')
 
 
 router.get('/', (req, res) => {
 
     Psych
         .find()
-        //.populate('problems')
+        .populate({ path: 'problems'})
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
@@ -17,13 +18,14 @@ router.get('/', (req, res) => {
 
 router.get('/:psych_id', (req, res) => {
 
-    if (!mongoose.Types.ObjectId.isValid(req.params.coaster_id)) {
+    if (!mongoose.Types.ObjectId.isValid(req.params.psych_id)) {
         res.status(404).json({ message: 'Invalid ID' })
         return
     }
 
     Psych
         .findById(req.params.psych_id)
+        .populate({ path: 'problems' })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
