@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Col, Row} from 'react-bootstrap'
 
 import './HomePage.css'
 
@@ -11,21 +12,21 @@ const HomePage = () => {
             </video>
             <div>
                 <h1>Bienvenido a helping-hand</h1>
-                <p>A veces la vida se complica, pero pedir ayuda es facil. Queremos ayudarte a encontrar la persona que pueda escucharte.</p>
+                <p>A veces la vida se complica, pero pedir ayuda puede ser facil. Queremos ayudarte a encontrar la persona que pueda acompanarte.</p>
                 <Link to='/psychologists' className="button">Start searching for a professional</Link>
             </div>
             </section>
-            <section className="info">
-                <div>
+            <Row className="info">
+                <Col xs={12} md={4}>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                </div>
-                <div>
+                </Col>
+                <Col xs={12} md={4}>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                </div>
-                <div>
+                </Col>
+                <Col xs={12} md={4}>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-                </div>
-            </section>
+                </Col>
+            </Row>
         </>
     )
 }

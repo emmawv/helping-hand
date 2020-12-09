@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 
 import PsychService from './../../../service/psychologists.service'
 import PsychCard from './PsychCard'
@@ -30,17 +30,22 @@ class PsychList extends Component {
         console.log(this.state.psych)
         return (
             <Container>
-                <h1>Listado de psicologos</h1>
+                <h1 className='title'>Listado de psicologos</h1>
+                <Row>
                     {
                     this.state.psych.length ? this.state.psych.map(elm => {
                         return (
-                            <>
-                            <PsychCard psych={elm} />
+                            
+                                <>
+                                <Col xs={12} md={12}>
+                                    <PsychCard psych={elm} />
+                                </Col>
                                 <hr />
-                            </>
+                                </>
                         )
                     }) : <p>Please wait...loading</p>
-                }
+                    }
+                </Row>
             </Container>
         )
     }

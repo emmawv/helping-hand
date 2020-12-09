@@ -1,0 +1,30 @@
+.login-submit{
+    background-color: #f27f3d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: none
+}
+
+.login-submit:active{
+    background-color: #db6d2e;
+    border: none;
+}
+
+.login-submit:focus{
+    background-color: #db6d2e;
+    border: none;
+}
+
+.login-submit:hover{
+    background-color: #db6d2e;
+}
+
+.login-form{
+    margin-top: 150px
+}
+
+.login-form img{
+    width: 100%
+}

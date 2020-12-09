@@ -1,0 +1,30 @@
+.signup-submit{
+    background-color: #f27f3d;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 10px;
+    border: none
+}
+
+.signup-submit:active{
+    background-color: #db6d2e;
+    border: none;
+}
+
+.signup-submit:focus{
+    background-color: #db6d2e;
+    border: none;
+}
+
+.signup-submit:hover{
+    background-color: #db6d2e;
+}
+
+.signup-form{
+    margin-top: 150px
+}
+
+.signup-form img{
+    width: 100%
+}

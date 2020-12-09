@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
 
     Psych
         .find()
-        // .populate('problems.problem')
+        //.populate('problems')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

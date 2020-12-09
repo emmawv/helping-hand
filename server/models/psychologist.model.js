@@ -6,6 +6,10 @@ const psychSchema = new Schema({
         type: String,
         required: true
     },
+    surname: {
+        type: String,
+        required: true,
+    },
     gender: {
         type: String,
         enum:['Mujer', 'Hombre', 'No binario']
@@ -31,7 +35,7 @@ const psychSchema = new Schema({
     timetables: [String],
     problems: [{
         type: Schema.Types.ObjectId,
-        ref: 'problems'
+        ref: 'Problem'
     }],
     description: String,
     profileImg: {

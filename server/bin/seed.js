@@ -17,7 +17,8 @@ User.collection.drop();
 
 const psychologists = [
     {
-        name: 'Antonio Ruiz',
+        name: 'Antonio',
+        surname: 'Ruiz',
         email: 'antonio.ruiz@gmail.com',
         telephone: 629462849,
         password: bcrypt.hashSync("antonio", salt),
@@ -34,7 +35,8 @@ const psychologists = [
         role: 'DOC'
     },
     {
-        name: 'Ana Sanchez',
+        name: 'Ana',
+        surname: 'Sanchez',
         email: 'ana.sanchez@gmail.com',
         telephone: 660460374,
         password: bcrypt.hashSync("ana", salt),
@@ -51,7 +53,8 @@ const psychologists = [
         role: 'DOC'
     },
     {
-        name: 'Carla Jimenez',
+        name: 'Carla',
+        surname: 'Jimenez',
         email: 'carla.jimenez@gmail.com',
         telephone: 679734620,
         password: bcrypt.hashSync("carla", salt),
@@ -71,7 +74,7 @@ const psychologists = [
 
 const users = [
     {
-    name: 'Carmen Chicharro',
+    name: 'Carmen',
     email: 'carmencita@gmail.com',
     password: bcrypt.hashSync("carmen", salt),
     profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607352894/helping-hand/staff186_2_zzisne.jpg',

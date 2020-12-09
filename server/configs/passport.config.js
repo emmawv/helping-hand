@@ -18,16 +18,18 @@ module.exports = app => {
     passport.serializeUser((user, next) => next(null, user._id))
     passport.deserializeUser((id, next) => {
         Promise
-            .all(User.findById(id), Psych.findById(id))
+            .all([User.findById(id), Psych.findById(id)])
             .then(results => results.forEach(elm => next(null, elm)))
             .catch(err => next(err))
     })
 
     app.use(flash())
 
-    passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
-        Promise.all(User.findOne({ email }), Psych.findOne({ email }))
+    passport.use(new LocalStrategy({ passReqToCallback: true }, (req, email, password, next) => {
+        Promise
+            .all([User.findOne({ email }), Psych.findOne({ email })])
             .then(results => {
+                console.log('RESULTS:', results)
                 if (!results.length) {
                     return next(null, false, { message: "Email incorrecto" })
                 }

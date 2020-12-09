@@ -20,8 +20,8 @@ video {
 .hero>div{
     text-align: center;
     margin: 0 auto;
-    width: 80%;
-    padding: 10rem
+    width: 60%;
+    padding: 10rem 0;
 }
 
 .hero .button{
@@ -44,13 +44,18 @@ video {
 }
 
 .info{
-    display: flex;
-    padding: 5rem 1rem;
+    padding: 5rem 0;
     background-color: #EAF3FA;
     text-align: center
 }
 
 .info p{
-    margin: 0 20px
+    padding: 0 20px
+}
+
+@media all and (max-width: 768px){
+    .hero>div{
+        padding: 8rem 0
+    }
 }
 
