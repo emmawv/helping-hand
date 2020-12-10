@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 
-const { REACT_APP_APIKEY }  = process.env
-
 const mapStyles = {
     width: '90%',
     height: '200px',
@@ -34,5 +32,5 @@ export class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyDrqyxE2ho0Doz9WF4CwgnTFEl_LF0DiB0'
+    apiKey: 'API_KEY'
 })(MapContainer)
