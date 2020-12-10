@@ -1,5 +1,5 @@
 .psych-card img{
-    height: 250px;
+    height: 200px;
     width: 100%;
     object-fit: cover;
     padding: 0;
@@ -9,7 +9,8 @@
 .psych-card{
     text-align: left;
     width: 100%;
-    margin: 20px
+    margin: 20px;
+    padding: 10px 10px 0 10px
 }
 
 .psychcard-info{
@@ -34,34 +35,34 @@
 }
 
 .infobtn{
-    background-color: #f27f3d;
+    background-color: #a5d499;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
-    margin: 10px auto 0;
+    margin: 10px auto;
     border: none;
     text-align: center;
     display: block;
 }
 
 .infobtn:active{
-    background-color: #db6d2e;
+    background-color: #a5d499;
     border: none;
 }
 
 .infobtn:focus{
-    background-color: #db6d2e;
+    background-color: #a5d499;
     border: none;
 }
 
 .infobtn:hover{
-    background-color: #db6d2e;
+    background-color: #92d381;
     text-decoration: none;
     color: white
 }
 
 @media all and (max-width: 425px) {
     .psych-card img{
-        height: 150px
+        height: 200px;
     }
 }

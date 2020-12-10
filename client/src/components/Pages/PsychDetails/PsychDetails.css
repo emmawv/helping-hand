@@ -1,11 +1,22 @@
 .psych-details img{
     height: 350px;
-    width: 250px;
+    width: 100%;
     object-fit: cover;
-    border-radius: 5px
+    border-radius: 5px;
+    margin: 20px 0;
 }
 
 .psych-details h1{
     text-align: center;
     margin-top: 80px
+}
+
+@media all and (max-width: 425px) {
+    .details-img img{
+        height: 200px;
+    }
+
+    .details-img{
+        text-align: center;
+    }  
 }

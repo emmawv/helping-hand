@@ -6,7 +6,6 @@ const LocalStrategy = require("passport-local").Strategy
 const flash = require("connect-flash")
 
 const User = require('../models/user.model')
-const Psych = require('../models/psychologist.model')
 
 module.exports = app => {
 
@@ -18,23 +17,21 @@ module.exports = app => {
 
     passport.serializeUser((user, next) => next(null, user._id))
     passport.deserializeUser((id, next) => {
-        Promise
-            .all([User.findById(id), Psych.findById(id)])
-            .then(results => results.forEach(elm => next(null, elm)))
+        User.findById(id)
+            .then(theUser => next(null, theUser))
             .catch(err => next(err))
     })
 
     app.use(flash())
 
     passport.use(new LocalStrategy({ passReqToCallback: true }, (req, email, password, next) => {
-        Promise
-            .all([User.findOne({ email }), Psych.findOne({ email })])
-            .then(results => {
-                console.log('RESULTS:', results)
-                if (!results.length) {
+        User
+            .findOne({ email })
+            .then(theUser => {
+                if (!theUser) {
                     return next(null, false, { message: "Email incorrecto" })
                 }
-                if (results.forEach(elm => !bcrypt.compareSync(password, elm.password))) {
+                if (!bcrypt.compareSync(password, theUser.password)) {
                     return next(null, false, { message: "Contrasena incorrecta" })
                 }
                 return next(null, user)

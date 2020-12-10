@@ -4,7 +4,6 @@ const passport = require("passport")
 const bcrypt = require("bcrypt")
 
 const User = require("../models/user.model")
-const Psych = require("../models/psychologist.model")
 
 
 router.post('/signup', (req, res) => {
@@ -63,8 +62,8 @@ router.post('/signup/doc', (req, res) => {
         return
     }
 
-    Psych
-        .findOne({ email })
+    User
+        .findOne({ role: 'DOC', email })
         .then(foundUser => {
             if (foundUser) {
                 res.status(400).json({ message: 'El email ya esta registrado' })

@@ -8,13 +8,13 @@ const PsychCard = ({ psych }) => {
     return (
         <Row className='psych-card'>
             
-            <Col xs={12} md={3}>
+            <Col xs={12} md={3} lg={2}>
                 <img src={psych.profileImg} alt='Profile' />
                 
                 <Link to={`/psychologists/${psych._id}`} className='infobtn'>See more info</Link>
             </Col>
 
-            <Col xs={12} md={9}>
+            <Col xs={12} md={9} lg={10}>
                 <div className='psychcard-info'>
                     
                     <h3>{psych.name} {psych.surname}</h3>

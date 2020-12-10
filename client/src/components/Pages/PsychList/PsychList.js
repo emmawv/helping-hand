@@ -4,6 +4,8 @@ import { Container, Row, Col } from 'react-bootstrap'
 import PsychService from './../../../service/psychologists.service'
 import PsychCard from './PsychCard'
 
+import MapContainer from './PsychListMap'
+
 class PsychList extends Component {
 
     constructor() {
@@ -30,6 +32,10 @@ class PsychList extends Component {
 
     render() {
         return (
+            <>
+                <div>
+                    <MapContainer />
+                </div>
             <Container>
                 <h1 className='title'>Listado de psicologos</h1>
                 <hr />
@@ -39,7 +45,7 @@ class PsychList extends Component {
                         return (
                             
                                 <>
-                                <Col xs={12} md={12}>
+                                <Col xs={12}>
                                     <PsychCard key={ elm._id} psych={elm} />
                                 </Col>
                                 <hr />
@@ -48,7 +54,8 @@ class PsychList extends Component {
                     }) : <p>Please wait...loading</p>
                     }
                 </Row>
-            </Container>
+                </Container>
+            </>
         )
     }
 }

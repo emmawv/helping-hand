@@ -37,7 +37,9 @@ class PsychDetails extends Component {
                         < hr/>
                         <Row>
                             <Col md={4} >
-                                <img src={this.state.psych.profileImg} alt={this.state.psych.name} />
+                                <div className='details-img'>
+                                    <img src={this.state.psych.profileImg} alt={this.state.psych.name} />
+                                </div>
                             </Col>
                             <Col md={8}>
                                 {this.state.psych.description
@@ -50,7 +52,7 @@ class PsychDetails extends Component {
                                     {this.state.psych.problems.map(elm => {
                                         return (
                                             <>
-                                            <p>{elm.name}</p>
+                                            <strong>{elm.name}</strong>
                                                 <hr />
                                                 <ul>
                                                     {elm.subgroup.map(elm => <li>{elm}</li>)}

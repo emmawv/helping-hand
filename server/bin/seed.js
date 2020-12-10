@@ -5,17 +5,15 @@ const bcryptSalt = 10
 const salt = bcrypt.genSaltSync(bcryptSalt)
 
 const User = require('../models/user.model')
-const Psych = require('../models/psychologist.model');
 const Problem = require('../models/problems.model')
 
 const dbName = 'helping-hand';
 mongoose.connect(`mongodb://localhost/${dbName}`, { useNewUrlParser: true, useUnifiedTopology: true });
 
-Psych.collection.drop();
 Problem.collection.drop();
 User.collection.drop();
 
-const psychologists = [
+const psych = [
     {
         name: 'Antonio',
         surname: 'Ruiz',
@@ -29,6 +27,7 @@ const psychologists = [
                 coordinates: [40.9302840384, -3.9274650]
             },
         },
+        problems: undefined,
         timetable: ['10:30', '12:00', '15:00'],
         profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607290203/helping-hand/linkedin_profile_picture_tips-1_tiqtud.jpg',
         agesTreated: ['Adultos', 'Adolescentes(14 a 19)', 'Preadolescentes(11 a 13)'],
@@ -47,6 +46,7 @@ const psychologists = [
                 coordinates: [40.364728375, -3.4563729]
             },
         },
+        problems: undefined,
         timetable: ['11:15', '13:00', '17:00', '19:00'],
         profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607289872/helping-hand/main-qimg-7fb93146f5e4e470f5a590d2fc38be3b_e1bz5s.jpg',
         agesTreated: ['Niños(6 a 10)', 'Niños pequeños/preescolares(0 a 6)'],
@@ -65,6 +65,7 @@ const psychologists = [
                 coordinates: [40.863956, -3.06228567]
             },
         },
+        problems: undefined,
         timetable: ['11:00', '11:45', '13:00', '20:00'],
         profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607352533/helping-hand/2018-11-17-Martin-Novak-shutterstock_492835963_o8h8ko.jpg',
         agesTreated: ['Adultos mayores (65+)', 'Adultos', 'Adolescentes(14 a 19)', 'Preadolescentes(11 a 13)', 'Niños(6 a 10)', 'Niños pequeños/preescolares(0 a 6)'],
@@ -72,13 +73,13 @@ const psychologists = [
     }
 ]
 
-const users = [
+const patients = [
     {
-    name: 'Carmen',
-    email: 'carmencita@gmail.com',
-    password: bcrypt.hashSync("carmen", salt),
-    profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607352894/helping-hand/staff186_2_zzisne.jpg',
-    role: 'USER'
+        name: 'Carmen',
+        email: 'carmencita@gmail.com',
+        password: bcrypt.hashSync("carmen", salt),
+        profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607352894/helping-hand/staff186_2_zzisne.jpg',
+        role: 'PATIENT'
     }
 ]
 
@@ -123,15 +124,15 @@ const problems = [
 thePsych = []
 theProblems = []
 Promise
-    .all([Psych.create(psychologists), User.create(users), Problem.create(problems)])
+    .all([User.Psych.create(psych), User.Patient.create(patients), Problem.create(problems)])
     .then((results) => {
         results[0].forEach((user) => thePsych.push(user._id))
         results[2].forEach((problem) => theProblems.push(problem._id))
     })
-    .then(() => Psych.findByIdAndUpdate(thePsych[0], { problems: [theProblems[0], theProblems[3], theProblems[7]] }, { new: true }))
-    .then(() => Psych.findByIdAndUpdate(thePsych[1], { problems: [theProblems[3], theProblems[5], theProblems[6]] }, { new: true }))
-    .then(() => Psych.findByIdAndUpdate(thePsych[2], { problems: [theProblems[1], theProblems[2], theProblems[7], theProblems[8]] }, { new: true }))
-    .then(() => console.log(`You created a DDBB with ${psychologists.length} psychologists in it, ${users.length} users in it and ${problems.length} problems in it`))
+    .then(() => User.Psych.findByIdAndUpdate(thePsych[0], { problems: [theProblems[0], theProblems[3], theProblems[7]] }, { new: true }))
+    .then(() => User.Psych.findByIdAndUpdate(thePsych[1], { problems: [theProblems[3], theProblems[5], theProblems[6]] }, { new: true }))
+    .then(() => User.Psych.findByIdAndUpdate(thePsych[2], { problems: [theProblems[1], theProblems[2], theProblems[7], theProblems[8]] }, { new: true }))
+    .then(() => User.find().then(user => console.log(user)))
     .then(() => mongoose.connection.close())
     .catch((err) => new Error(err))
     

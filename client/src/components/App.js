@@ -10,7 +10,6 @@ import PsychDetails from './Pages/PsychDetails/PsychDetails'
 import Navigation from './Layout/Navigation/Navbar'
 import Login from './Pages/Login/Login'
 import SignUp from './Pages/SignUp/SignUp'
-
 import AuthServices from '../service/auth.service'
 
 export default class App extends Component {
@@ -36,7 +35,7 @@ export default class App extends Component {
   render() {
   return(
     <>
-      <Navigation storeUser={this.setTheUser} loggedUser={this.state.loggedInUser}/>
+      <Navigation storeUser={this.setTheUser} loggedUser={this.state.loggedInUser} />
       <Switch>
         <Route path='/' exact render={() => <HomePage />} />
         <Route path='/psychologists' exact render={() => <PsychList loggedUser={this.state.loggedInUser}/>} />

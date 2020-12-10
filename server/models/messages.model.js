@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const appointmentSchema = new Schema({
+const messageSchema = new Schema ({
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User'
@@ -10,11 +10,10 @@ const appointmentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Psych'
     },
-    time: String,
-    date: Date
+    content: String
 }, {
     timestamps: true
 })
 
-const Appointment = mongoose.model('Appointment', appointmentSchema)
-module.exports = Appointment
+const Message = mongoose.model('Message', messageSchema)
+module.exports = Message
