@@ -9,7 +9,7 @@ const Problem = require('../models/problems.model')
 router.get('/', (req, res) => {
 
     User.Psych
-        .find()
+        .find({ role: 'DOC' })
         .populate('problems')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
@@ -32,7 +32,7 @@ router.get('/:psych_id', (req, res) => {
 
 router.put('/edit?id=psych_id', (req, res) => {
 
-    User.Psych
+    User
         .findByIdAndUpdate(req.params.psych_id, req.body)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))

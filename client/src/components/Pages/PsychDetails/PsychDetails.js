@@ -36,12 +36,12 @@ class PsychDetails extends Component {
                         <h1>{this.state.psych.name} {this.state.psych.surname}</h1>
                         < hr/>
                         <Row>
-                            <Col md={4} >
+                            <Col md={4} lg={3} >
                                 <div className='details-img'>
                                     <img src={this.state.psych.profileImg} alt={this.state.psych.name} />
                                 </div>
                             </Col>
-                            <Col md={8}>
+                            <Col md={8} lg={9}>
                                 {this.state.psych.description
                                     ? 
                                     <>

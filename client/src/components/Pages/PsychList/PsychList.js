@@ -33,9 +33,9 @@ class PsychList extends Component {
     render() {
         return (
             <>
-                <div>
+                {/* <div>
                     <MapContainer />
-                </div>
+                </div> */}
             <Container>
                 <h1 className='title'>Listado de psicologos</h1>
                 <hr />

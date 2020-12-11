@@ -11,7 +11,7 @@ const PsychCard = ({ psych }) => {
             <Col xs={12} md={3} lg={2}>
                 <img src={psych.profileImg} alt='Profile' />
                 
-                <Link to={`/psychologists/${psych._id}`} className='infobtn'>See more info</Link>
+                <Link to={`/psychologists/${psych._id}`} className='infobtn'>Ver mas</Link>
             </Col>
 
             <Col xs={12} md={9} lg={10}>
