@@ -1,36 +1,74 @@
-// import React, { Component } from 'react'
-// import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
+import React, { Component } from 'react'
+import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 
-// const mapStyles = {
-//     width: '90%',
-//     height: '200px',
-//     margin: '0 auto',
-//     position: 'relative'
-// };
+const mapStyles = {
+    width: '100%',
+    height: '350px'
+}
 
-// export class MapContainer extends Component {
-//     static defaultProps = {
-//         center: {
-//             lat: 59.95,
-//             lng: 30.33
-//         },
-//         zoom: 11
-//     }
+const API_KEY = process.env.REACT_APP_API_KEY
 
-//     render() {
-//         console.log(REACT_APP_APIKEY)
-//         return (
-//         <Map
-//                 google={this.props.google}
-//                 zoom={8}
-//                 style={mapStyles}
-//                 initialCenter={{ lat: 47.444, lng: -122.176 }}>
-//             <Marker position={{ lat: 48.00, lng: -122.00}} />
-//         </Map >
-//         )
-//     }
-// }
+export class MapContainer extends Component {
+    state = {
+        showingInfoWindow: false,  // Hides or shows the InfoWindow
+        activeMarker: {},          // Shows the active marker upon click
+        selectedPlace: {},         // Shows the InfoWindow to the selected place upon a marker
+        psych: this.props.psych
+    };
 
-// export default GoogleApiWrapper({
-//     apiKey: 'API_KEY'
-// })(MapContainer)
+    onMarkerClick = (props, marker, e) =>
+        this.setState({
+            selectedPlace: props,
+            activeMarker: marker,
+            showingInfoWindow: true
+        });
+
+    onClose = () => {
+        if (this.state.showingInfoWindow) {
+            this.setState({
+                showingInfoWindow: false,
+                activeMarker: null
+            });
+        }
+    };
+
+    render() {
+        return (
+            <Map
+                google={this.props.google}
+                zoom={8}
+                style={mapStyles}
+                initialCenter={{ lat: 40.364728375, lng: -3.4563729 }}
+            >
+                {this.state.psych.map(elm => {
+                    return (
+                        <Marker
+                            position={{ lat: elm.practice.location.coordinates[0], lng: elm.practice.location.coordinates[1] }}
+                            onClick={this.onMarkerClick}
+                            name={elm.name}
+                            surname={elm.surname}
+                            image={elm.profileImg}
+                            />
+                    )
+                })}
+
+                <InfoWindow
+                    marker={this.state.activeMarker}
+                    visible={this.state.showingInfoWindow}
+                    onClose={this.onClose}>
+                    <div className='marker'>
+                        <img src={this.state.selectedPlace.image} alt='chosen psychologist' />
+                        <div>
+                            {this.state.selectedPlace.name} <br/>
+                            {this.state.selectedPlace.surname}
+                        </div>
+                    </div>
+                </InfoWindow>
+            </Map >
+        )
+    }
+}
+
+export default GoogleApiWrapper({
+    apiKey: API_KEY
+})(MapContainer)

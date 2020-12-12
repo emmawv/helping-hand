@@ -9,8 +9,8 @@
 .psych-card{
     text-align: left;
     width: 100%;
-    margin: 20px;
-    padding: 10px 10px 0 10px
+    padding: 10px 10px 0 10px;
+    margin: 20px 0
 }
 
 .psychcard-info{
@@ -27,38 +27,6 @@
 .psych-card:hover{
     box-shadow: 1px 1px 3px 2px lightgrey;
     border-radius: 5px
-}
-
-.title{
-    margin: 100px 0 25px;
-    text-align: center;
-}
-
-.infobtn{
-    background-color: #a5d499;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    margin: 10px auto;
-    border: none;
-    text-align: center;
-    display: block;
-}
-
-.infobtn:active{
-    background-color: #a5d499;
-    border: none;
-}
-
-.infobtn:focus{
-    background-color: #a5d499;
-    border: none;
-}
-
-.infobtn:hover{
-    background-color: #92d381;
-    text-decoration: none;
-    color: white
 }
 
 @media all and (max-width: 425px) {

@@ -44,13 +44,17 @@
 }
 
 .info{
-    padding: 5rem 0;
+    padding: 2rem 0;
     background-color: #EAF3FA;
     text-align: center
 }
 
 .info p{
     padding: 0 20px
+}
+
+.svg{
+    margin-bottom: 10px
 }
 
 @media all and (max-width: 768px){

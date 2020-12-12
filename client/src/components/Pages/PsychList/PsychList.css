@@ -1,0 +1,56 @@
+.psych-page{
+    display: flex;
+    position: relative;
+    margin-top: 50px;
+    align-items: center;
+}
+
+.title{
+    margin: 50px 0 25px;
+    text-align: center;   
+}
+
+.infobtn{
+    background-color: #a5d499;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px auto;
+    border: none;
+    text-align: center;
+    display: block;
+
+    transition: all 0.3s;
+}
+
+.infobtn:active{
+    background-color: #a5d499;
+    border: none;
+}
+
+.infobtn:focus{
+    background-color: #a5d499;
+    border: none;
+}
+
+.infobtn:hover{
+    background-color: #92d381;
+    text-decoration: none;
+    color: white
+}
+
+.marker{
+    display: flex;
+
+}
+
+.marker img{
+ width: 50px;
+ height: 50px;
+ margin-right: 3px;
+ object-fit: cover;
+}
+
+.card-body{
+    padding: 0
+}
