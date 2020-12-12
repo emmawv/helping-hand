@@ -12,6 +12,8 @@ import Login from './Pages/Login/Login'
 import SignUp from './Pages/SignUp/SignUp'
 import AuthServices from '../service/auth.service'
 
+
+
 export default class App extends Component {
   
   constructor() {

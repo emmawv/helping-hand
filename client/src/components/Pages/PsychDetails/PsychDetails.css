@@ -1,14 +1,50 @@
-.psych-details img{
+.psych-details{
+    margin-top: 80px
+}
+
+.psych-details .details-img img{
     height: 350px;
     width: 100%;
     object-fit: cover;
     border-radius: 5px;
-    margin: 20px 0;
 }
 
-.psych-details h1{
+.header{
     text-align: center;
-    margin-top: 80px
+}
+
+.psych-details small{
+    color: grey;
+}
+
+.back-link{
+ text-decoration: none
+}
+
+.contact-btn{
+    background-color: white;
+    color:  #a5d499;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px auto;
+    border: 1px solid  #a5d499;
+    text-align: center;
+    display: block;
+
+    transition: all 0.3s;
+}
+
+.contact-btn:hover{
+    text-decoration: none;
+    background-color:  #a5d499;
+    color: white
+}
+
+.map{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 250px
 }
 
 @media all and (max-width: 425px) {

@@ -5,10 +5,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import App from './components/App'
 
 ReactDOM.render(
-  <React.StrictMode>
     <Router>
       <App />
-    </Router>
-  </React.StrictMode>,
+    </Router>,
   document.getElementById('root')
 )
