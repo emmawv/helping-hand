@@ -29,6 +29,7 @@ module.exports = app => {
         User
             .findOne({ email })
             .then(theUser => {
+                console.log(theUser)
                 if (!theUser) {
                     return next(null, false, { message: "Email incorrecto" })
                 }
