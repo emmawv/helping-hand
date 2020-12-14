@@ -4,12 +4,26 @@ export default class Profile extends Component {
     constructor() {
         super()
         this.state = {
-            user: this.loggedUser
+            user: undefined
         }
     }
 
+    componentDidMount = () => this.setState({ user: this.props.loggedUser })
+
     render() {
-        console.log(this.state.user)
-        return (<h1>Hiya {}</h1>)
+        return (
+            <>
+                {
+                    !this.state.user
+                        ?
+                        <h2>Gracias por tu paciencia, estamos cargando la informacion de tu perfil</h2>
+                        :
+                        <h1>Bienvenid@, {this.state.user.name}</h1>
+
+
+                }
+            </>
+
+        )
     }
 }

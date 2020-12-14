@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap'
 import Geocode from "react-geocode"
 
 import PsychService from '../../../service/psychologists.service'
 import MapContainer from './DetailsMap'
+import AppointmentForm from '../AppointmentForm/AppointmentForm'
 import './PsychDetails.css'
 
 class PsychDetails extends Component {
@@ -13,7 +13,10 @@ class PsychDetails extends Component {
         super()
         this.state = {
             psych: undefined,
-            address: undefined
+            address: undefined,
+            showAppointmentModal: false,
+            showContactModal: false,
+            appointmentButtonInactive: false
         }
         this.psychService = new PsychService()
     }
@@ -29,8 +32,14 @@ class PsychDetails extends Component {
             .catch((err) => new Error(err))
     }
 
+    handleAppointmentModal = visible => this.setState({ showAppointmentModal: visible })
+
+    handleContactModal = visible => this.setState({ showContactModal: visible })
+
+    toggleButton = () => this.setState({ appointmentButtonInactive: true})
+
     setGeocode = () => {
-        
+
         Geocode.setApiKey(process.env.REACT_APP_API_KEY);
 
         Geocode.setLanguage("es")
@@ -39,12 +48,12 @@ class PsychDetails extends Component {
 
         Geocode
             .fromLatLng(this.state.psych.practice.location.coordinates[0], this.state.psych.practice.location.coordinates[1])
-            .then(response => this.setState({address: response.results[0].formatted_address }))
+            .then(response => this.setState({ address: response.results[0].formatted_address }))
             .catch((err) => new Error(err))
-        
+
     }
-        
-    
+
+
     render() {
         return (
             <Container className="psych-details">
@@ -66,8 +75,22 @@ class PsychDetails extends Component {
                                 <div className='details-img'>
                                     <img src={this.state.psych.profileImg} alt={this.state.psych.name} />
                                 </div>
-                                <Link to={`/`} className='infobtn'>Pedir Cita</Link>
-                                <Link to={`/`} className='contact-btn'>Contactar</Link>
+                                {this.props.loggedUser ?
+                                    <>
+                                    {!this.state.appointmentButtonInactive
+                                        ?
+                                        <Button onClick={() => this.handleAppointmentModal(true)} className='infobtn' block>Pedir cita</Button>
+                                        :
+                                        <Button onClick={() => this.handleAppointmentModal(true)} id='infobtn-off' disabled block>Cita pedida</Button>
+                                    }
+                                        
+                                        <Button onClick={() => this.handleContactModal(true)} className='contact-btn' block>Contactar</Button>
+                                    </>
+                                    :
+                                    <p className='login-msg'>Inicia sesion para poder contactar y pedir cita con especialistas</p>
+                                }
+
+
                             </Col>
                             <Col md={8} lg={9}>
                                 <Row>
@@ -94,10 +117,10 @@ class PsychDetails extends Component {
                                     </Col>
                                     <Col xs={5}>
                                         <Card style={{ width: '100%' }}>
-                                            <MapContainer psych={this.state.psych} address={this.state.address}/> 
-                                                <Card.Text style={{padding:'10px'}}>
-                                                    {this.state.address ? this.state.address : null}
-                                                </Card.Text>
+                                            <MapContainer psych={this.state.psych} address={this.state.address} />
+                                            <Card.Text style={{ padding: '10px' }}>
+                                                {this.state.address ? this.state.address : null}
+                                            </Card.Text>
                                         </Card>
                                     </Col>
                                 </Row>
@@ -107,7 +130,11 @@ class PsychDetails extends Component {
                     :
                     <p>please wait...loading</p>
                 }
-
+                <Modal show={this.state.showAppointmentModal} onHide={() => this.handleAppointmentModal(false)}>
+                    <Modal.Body>
+                        <AppointmentForm closeModal={() => this.handleAppointmentModal(false)} toggleButton={() => this.toggleButton()} psych={this.state.psych} loggedUser={this.props.loggedUSer}/>
+                    </Modal.Body>
+                </Modal>
             </Container>
         )
     }

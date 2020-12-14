@@ -37,6 +37,7 @@
 .contact-btn:hover{
     text-decoration: none;
     background-color:  #a5d499;
+    border-color: #a5d499;
     color: white
 }
 
@@ -48,9 +49,25 @@
 }
 
 .alert{
-    border: 1px solid #FCA400;
-    background-color: rgb(252, 164, 0, 0.2);
+    border: 1px solid #F2A679;
+    background-color: rgb(242, 166, 121, 0.2);
     margin-top: 10px
+}
+
+.login-msg{
+    border: 1px solid  #FCA400;
+    background-color:  rgb(252, 164, 0, 0.2);
+    margin-top: 15px;
+    border-radius: 5px;
+    padding: 5px 8px;
+    font-size: 0.8em
+}
+
+#infobtn-off, #infobtn-off:hover{
+    background-color: rgb(116, 110, 110);
+    font-weight: 0.5em;
+    border-color: rgb(116, 110, 110);
+    color: white
 }
 
 @media all and (max-width: 425px) {
