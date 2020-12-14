@@ -95,6 +95,7 @@ class PsychDetails extends Component {
                                                     {this.state.address ? this.state.address : null}
                                                 </Card.Text>
                                         </Card>
+                                        <p className='alert'>Este psicologo solo realiza consultas de forma remota</p>
                                     </Col>
                                 </Row>
                             </Col>

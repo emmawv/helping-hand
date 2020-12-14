@@ -10,10 +10,11 @@ class Signup extends Component {
         super()
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            name: '',
+            surname: ''
         }
         this.authService = new AuthService()
-
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -25,6 +26,7 @@ class Signup extends Component {
         this.authService
             .signup(this.state)
             .then(theLoggedInUser => {
+                console.log(theLoggedInUser)
                 this.props.storeUser(theLoggedInUser.data)
                 this.props.history.push('/psychologists')
             })
@@ -43,13 +45,28 @@ class Signup extends Component {
                         <h1>Registro de usuario</h1>
                         <hr />
                         <Form onSubmit={this.handleSubmit}>
+                            <Row>
+                                <Col xs={6}>
+                                <Form.Group controlId='name'>
+                                <Form.Label>Nombre</Form.Label>
+                                <Form.Control type='text' name='name' value={this.state.name} onChange={this.handleInputChange} />
+                                </Form.Group>
+                                </Col>
+                                <Col xs={6}>
+                            <Form.Group controlId='surname'>
+                                <Form.Label>Apellido</Form.Label>
+                                <Form.Control type='text' name='surname' value={this.state.surname} onChange={this.handleInputChange} />
+                                </Form.Group>
+                                </Col>
+                            </Row>
                             <Form.Group controlId='email'>
-                                <Form.Label>Usuario</Form.Label>
+                                <Form.Label>Email</Form.Label>
                                 <Form.Control type='text' name='email' value={this.state.email} onChange={this.handleInputChange} />
                             </Form.Group>
                             <Form.Group controlId='password'>
                                 <Form.Label>Contraseña</Form.Label>
                                 <Form.Control type='password' name='password' value={this.state.password} onChange={this.handleInputChange} />
+                                <small>La contraseña debe incluir al menos una mayuscula, un numero y un caracter especial</small>
                             </Form.Group>
                             <Button className='login-submit' type='submit'>Registrarme</Button>
                         </Form>

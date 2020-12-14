@@ -31,6 +31,7 @@ const psych = [
         timetable: ['10:30', '12:00', '15:00'],
         profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607290203/helping-hand/linkedin_profile_picture_tips-1_tiqtud.jpg',
         agesTreated: ['Adultos', 'Adolescentes(14 a 19)', 'Preadolescentes(11 a 13)'],
+        meetType: ['remota'],
         role: 'DOC'
     },
     {
@@ -50,6 +51,7 @@ const psych = [
         timetable: ['11:15', '13:00', '17:00', '19:00'],
         profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607289872/helping-hand/main-qimg-7fb93146f5e4e470f5a590d2fc38be3b_e1bz5s.jpg',
         agesTreated: ['Niños(6 a 10)', 'Niños pequeños/preescolares(0 a 6)'],
+        meetType: ['presencial', 'remota'],
         role: 'DOC'
     },
     {
@@ -69,6 +71,7 @@ const psych = [
         timetable: ['11:00', '11:45', '13:00', '20:00'],
         profileImg: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1607352533/helping-hand/2018-11-17-Martin-Novak-shutterstock_492835963_o8h8ko.jpg',
         agesTreated: ['Adultos mayores (65+)', 'Adultos', 'Adolescentes(14 a 19)', 'Preadolescentes(11 a 13)', 'Niños(6 a 10)', 'Niños pequeños/preescolares(0 a 6)'],
+        meetType: ['presencial'],
         role: 'DOC'
     }
 ]

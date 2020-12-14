@@ -17,7 +17,6 @@ router.get('/', (req, res) => {
 
 
 router.get('/:psych_id', (req, res) => {
-
     if (!mongoose.Types.ObjectId.isValid(req.params.psych_id)) {
         res.status(404).json({ message: 'Invalid ID' })
         return
@@ -32,7 +31,7 @@ router.get('/:psych_id', (req, res) => {
 
 router.put('/edit?id=psych_id', (req, res) => {
 
-    User
+    User.Psych
         .findByIdAndUpdate(req.params.psych_id, req.body)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
