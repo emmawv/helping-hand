@@ -11,6 +11,7 @@ import Navigation from './Layout/Navigation/Navbar'
 import Login from './Pages/Login/Login'
 import SignUp from './Pages/SignUp/SignUp'
 import AuthServices from '../service/auth.service'
+import Profile from './Pages/Profile/Profile'
 
 
 
@@ -34,7 +35,7 @@ export default class App extends Component {
   }
 
 
-  setTheUser = user => this.setState({ loggedInUser: user }, () => console.log('El nuevo estado de App es:', this.state))
+  setTheUser = user => this.setState({ loggedInUser: user })
 
   setNavBar = () => this.setState({notIsMain: true})
   
@@ -42,14 +43,14 @@ export default class App extends Component {
   render() {
   return(
     <>
-      <Navigation storeUser={this.setTheUser} loggedInUser={this.state.loggedInUser}/>
+      <Navigation storeUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
       <Switch>
         <Route path='/' exact render={() => <HomePage />} />
         <Route path='/psychologists' exact render={() => <PsychList loggedUser={this.state.loggedInUser} />}/>
         <Route path='/psychologists/:psych_id' render={props => <PsychDetails {...props} loggedUser={this.state.loggedInUser} />}/>
         <Route path='/signup' render={props => <SignUp storeUser={this.setTheUser} {...props} />} />
         <Route path='/login' render={props => <Login storeUser={this.setTheUser} {...props} />} />
-        {/* <Route path='/perfil' render={() => this.state.loggedInUser ? <Profile loggedUser={this.state.loggedInUser} /> : <Redirect to='/inicio-sesion' />} /> */}
+        <Route path='/profile' render={() => this.state.loggedInUser ? <Profile loggedUser={this.state.loggedInUser} /> : <Redirect to='/login' />} />
       </Switch>
     </>
   )

@@ -26,7 +26,6 @@ class Signup extends Component {
         this.authService
             .signup(this.state)
             .then(theLoggedInUser => {
-                console.log(theLoggedInUser)
                 this.props.storeUser(theLoggedInUser.data)
                 this.props.history.push('/psychologists')
             })

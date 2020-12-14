@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import './PsychCard.css'
 
 const PsychCard = ({ psych }) => {
-    console.log(psych)
     return (
         <Row className='psych-card'>
             
@@ -12,6 +11,13 @@ const PsychCard = ({ psych }) => {
                 <img src={psych.profileImg} alt='Profile' />
                 
                 <Link to={`/psychologists/${psych._id}`} className='infobtn'>Ver mas</Link>
+
+                {!psych.meetType.includes('presencial')
+                    ?
+                    <p className='alert'><small>Este psicologo solo realiza consultas online</small></p>
+                    : null
+                }
+                
             </Col>
 
             <Col xs={12} md={9} lg={10}>

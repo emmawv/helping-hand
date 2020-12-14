@@ -42,7 +42,7 @@ export class MapContainer extends Component {
                         key: process.env.REACT_APP_GOOGLE_KEY,
                     }}
                     google={this.props.google}
-                    zoom={8}
+                    zoom={10}
                     style={mapStyles}
                     initialCenter={{ lat: this.props.psych.practice.location.coordinates[0], lng: this.props.psych.practice.location.coordinates[1] }}
                 >

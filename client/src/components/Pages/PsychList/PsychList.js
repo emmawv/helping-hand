@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Accordion, Card, Button, Toast } from 'react-bootstrap'
 
 import PsychService from './../../../service/psychologists.service'
 import PsychCard from './PsychCard'
@@ -25,7 +25,7 @@ class PsychList extends Component {
             .then(res => {
                 this.setState({ psych: res.data })
             })
-            .catch(err => console.log(err))
+            .catch((err) => new Error(err))
     }
 
     handleModal = visible => this.setState({ showModal: visible })
@@ -61,7 +61,7 @@ class PsychList extends Component {
 
                                             <>
                                                 <Col xs={12}>
-                                                    <PsychCard key={elm._id} psych={elm} />
+                                                    <PsychCard key={elm._id} psych={elm}/>
                                                 </Col>
                                                 <hr />
                                             </>
@@ -72,6 +72,18 @@ class PsychList extends Component {
                         </Col>
                     </Row>
                 </Container>
+
+                {/* <Toast
+                    style={{
+                        position: 'fixed',
+                        top: '8%',
+                        left: '35%',
+                    }}
+                    show={true} delay={3000} autohide>
+                    <Toast.Header>
+                        <strong>Log In was succesful!</strong>
+                    </Toast.Header>
+                </Toast> */}
             </>
         )
     }

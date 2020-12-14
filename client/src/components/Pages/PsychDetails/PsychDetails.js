@@ -26,7 +26,7 @@ class PsychDetails extends Component {
             .getOnePsych(psych_id)
             .then(res => this.setState({ psych: res.data }))
             .then(() => this.setGeocode())
-            .catch(err => console.log(err))
+            .catch((err) => new Error(err))
     }
 
     setGeocode = () => {
@@ -40,13 +40,12 @@ class PsychDetails extends Component {
         Geocode
             .fromLatLng(this.state.psych.practice.location.coordinates[0], this.state.psych.practice.location.coordinates[1])
             .then(response => this.setState({address: response.results[0].formatted_address }))
-            .catch(error => console.error(error))
+            .catch((err) => new Error(err))
         
     }
         
     
     render() {
-        console.log(this.state.address)
         return (
             <Container className="psych-details">
                 {this.state.psych
@@ -57,6 +56,11 @@ class PsychDetails extends Component {
                             <small>Psicologo Especializado</small>
                         </div>
                         < hr />
+                        {!this.state.psych.meetType.includes('presencial')
+                            ?
+                            <p className='alert'><small>Este psicologo solo realiza consultas online</small></p>
+                            : null
+                        }
                         <Row>
                             <Col md={4} lg={3} >
                                 <div className='details-img'>
@@ -95,7 +99,6 @@ class PsychDetails extends Component {
                                                     {this.state.address ? this.state.address : null}
                                                 </Card.Text>
                                         </Card>
-                                        <p className='alert'>Este psicologo solo realiza consultas de forma remota</p>
                                     </Col>
                                 </Row>
                             </Col>

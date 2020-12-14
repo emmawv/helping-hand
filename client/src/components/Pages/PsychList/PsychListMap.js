@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
+import { Link } from 'react-router-dom'
 
 const mapStyles = {
     width: '100%',
@@ -48,10 +49,9 @@ export class MapContainer extends Component {
                             name={elm.name}
                             surname={elm.surname}
                             image={elm.profileImg}
-                            />
+                        />
                     )
                 })}
-
                 <InfoWindow
                     marker={this.state.activeMarker}
                     visible={this.state.showingInfoWindow}
@@ -59,11 +59,12 @@ export class MapContainer extends Component {
                     <div className='marker'>
                         <img src={this.state.selectedPlace.image} alt='chosen psychologist' />
                         <div>
-                            {this.state.selectedPlace.name} <br/>
+                            {this.state.selectedPlace.name} <br />
                             {this.state.selectedPlace.surname}
                         </div>
                     </div>
                 </InfoWindow>
+
             </Map >
         )
     }

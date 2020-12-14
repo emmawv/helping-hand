@@ -135,7 +135,6 @@ Promise
     .then(() => User.Psych.findByIdAndUpdate(thePsych[0], { problems: [theProblems[0], theProblems[3], theProblems[7]] }, { new: true }))
     .then(() => User.Psych.findByIdAndUpdate(thePsych[1], { problems: [theProblems[3], theProblems[5], theProblems[6]] }, { new: true }))
     .then(() => User.Psych.findByIdAndUpdate(thePsych[2], { problems: [theProblems[1], theProblems[2], theProblems[7], theProblems[8]] }, { new: true }))
-    .then(() => User.find().then(user => console.log(user)))
     .then(() => mongoose.connection.close())
     .catch((err) => new Error(err))
     

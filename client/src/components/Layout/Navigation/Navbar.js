@@ -3,6 +3,7 @@ import { Navbar, Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import './Navbar.css'
+import AuthService from '../../../service/auth.service'
 
 export default class Navigation extends Component {
 
@@ -13,6 +14,7 @@ export default class Navigation extends Component {
             variant: 'light',
             collapse: false
         }
+        this.authService = new AuthService()
     }
 
     listenScrollEvent = e => {
@@ -36,10 +38,7 @@ export default class Navigation extends Component {
     logOut = () => {
         this.authService
             .logout()
-            .then(res => {
-                this.props.history.push('/')
-                this.props.storeUser(undefined)
-            })
+            .then(res => this.props.storeUser(undefined))
             .catch(err => console.log(err))
     }
 
@@ -58,7 +57,9 @@ export default class Navigation extends Component {
                                 this.props.loggedInUser
                                     ?
                                     <>
-                                        <Nav.Link as='div' onClick={this.logOut}>Cerrar sesión</Nav.Link>
+                                        <Link to='/'>
+                                            <Nav.Link as='div' onClick={this.logOut}>Cerrar sesión</Nav.Link>
+                                        </Link>
                                         <Link to='/profile'>
                                             <Nav.Link as='div'>Hola, {this.props.loggedInUser.name}</Nav.Link>
                                         </Link>

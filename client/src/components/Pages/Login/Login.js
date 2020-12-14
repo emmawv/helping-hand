@@ -26,7 +26,7 @@ class Login extends Component {
                 this.props.storeUser(theLoggedInUser.data)
                 this.props.history.push('/psychologists')
             })
-            .catch(err => console.log({ err }))
+            .catch((err) => new Error(err))
     }
 
 
