@@ -47,6 +47,12 @@
     height: 250px
 }
 
+.alert{
+    border: 1px solid #FCA400;
+    background-color: rgb(252, 164, 0, 0.2);
+    margin-top: 10px
+}
+
 @media all and (max-width: 425px) {
     .details-img img{
         height: 200px;

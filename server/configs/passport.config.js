@@ -16,6 +16,7 @@ module.exports = app => {
     }))
 
     passport.serializeUser((user, next) => next(null, user._id))
+
     passport.deserializeUser((id, next) => {
         User.findById(id)
             .then(theUser => next(null, theUser))
@@ -24,16 +25,14 @@ module.exports = app => {
 
     app.use(flash())
 
-    passport.use(new LocalStrategy({ passReqToCallback: true }, (req, email, password, next) => {
-        console.log(email)
+    passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
         User
-            .findOne({ email })
-            .then(theUser => {
-                console.log(theUser)
-                if (!theUser) {
+            .findOne({ email: username })
+            .then(user => {
+                if (!user) {
                     return next(null, false, { message: "Email incorrecto" })
                 }
-                if (!bcrypt.compareSync(password, theUser.password)) {
+                if (!bcrypt.compareSync(password, user.password)) {
                     return next(null, false, { message: "Contrasena incorrecta" })
                 }
                 return next(null, user)

@@ -8,7 +8,7 @@ const User = require("../models/user.model")
 
 router.post('/signup', (req, res) => {
 
-    const { email, password } = req.body
+    const { email, password, name, surname } = req.body
 
     if (!email || !password) {
         res.status(400).json({ message: 'Rellena todos los campos' })
@@ -25,7 +25,7 @@ router.post('/signup', (req, res) => {
         return
     }
 
-    User
+    User.Patient
         .findOne({ email })
         .then(foundUser => {
             if (foundUser) {
@@ -36,54 +36,53 @@ router.post('/signup', (req, res) => {
             const salt = bcrypt.genSaltSync(10)
             const hashPass = bcrypt.hashSync(password, salt)
 
-            return User.create({ email, password: hashPass })
-        })
-        .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Signup error' }) : res.status(200).json(newUser)))
-        .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
-})
-
-
-router.post('/signup/doc', (req, res) => {
-
-    const { email, password } = req.body
-
-    if (!email || !password) {
-        res.status(400).json({ message: 'Rellena todos los campos' })
-        return
-    }
-
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        res.status(400).json({ message: 'Formato de email no valido' })
-        return
-    }
-
-    if (!password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/gm)) {
-        res.status(400).json({ message: 'Contraseña poco segura' })
-        return
-    }
-
-    User
-        .findOne({ role: 'DOC', email })
-        .then(foundUser => {
-            if (foundUser) {
-                res.status(400).json({ message: 'El email ya esta registrado' })
-                return
-            }
-
-            const salt = bcrypt.genSaltSync(10)
-            const hashPass = bcrypt.hashSync(password, salt)
-
-            User
-                .create({ email, password: hashPass })
-                .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Signup error' }) : res.status(200).json(newUser)))
-                .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
+        User.Patient
+            .create({ email, password: hashPass, name, surname })
+            .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Signup error' }) : res.status(200).json(newUser)))
+            .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
         })
 })
 
 
-router.post('/log-in', (req, res, next) => {
-    console.log(req.body)
+// router.post('/signup/doc', (req, res) => {
 
+//     const { email, password } = req.body
+
+//     if (!email || !password) {
+//         res.status(400).json({ message: 'Rellena todos los campos' })
+//         return
+//     }
+
+//     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+//         res.status(400).json({ message: 'Formato de email no valido' })
+//         return
+//     }
+
+//     if (!password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{6,}$/gm)) {
+//         res.status(400).json({ message: 'Contraseña poco segura' })
+//         return
+//     }
+
+//     User
+//         .findOne({ role: 'DOC', email })
+//         .then(foundUser => {
+//             if (foundUser) {
+//                 res.status(400).json({ message: 'El email ya esta registrado' })
+//                 return
+//             }
+
+//             const salt = bcrypt.genSaltSync(10)
+//             const hashPass = bcrypt.hashSync(password, salt)
+
+//             User
+//                 .create({ email, password: hashPass })
+//                 .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Signup error' }) : res.status(200).json(newUser)))
+//                 .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
+//         })
+// })
+
+
+router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, theUser, failureDetails) => {
 
         if (err) {

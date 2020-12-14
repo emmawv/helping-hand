@@ -10,7 +10,8 @@ export default class Navigation extends Component {
         super()
         this.state = {
             background: 'transparent',
-            variant: 'light'
+            variant: 'light',
+            collapse: false
         }
     }
 
@@ -22,32 +23,52 @@ export default class Navigation extends Component {
         window.addEventListener('scroll', this.listenScrollEvent);
     }
 
+    setCollapseColour = () => {
+        this.state.collapse ? this.setState({ background: 'transparent', variant: 'light' }) :  this.setState({ background: '#6289D9', variant: 'dark' })
+    }
+
+    toggleCollapse = () => {
+        this.setCollapseColour()
+        this.state.collapse ? this.setState({ collapse: false }) : this.setState({ collapse: true })
+        
+    }
+
+    logOut = () => {
+        this.authService
+            .logout()
+            .then(res => {
+                this.props.history.push('/')
+                this.props.storeUser(undefined)
+            })
+            .catch(err => console.log(err))
+    }
+
     render() {
         return (
             <div id='navbar'>
-                <Navbar variant={this.state.variant} style={{ background: `${this.state.background}`}} fixed='top' expand='md'>
+                <Navbar variant={this.state.variant} style={{ background: `${this.state.background}` }} fixed='top' expand='md'>
                     <Navbar.Brand href='/'>Navbar</Navbar.Brand>
-                    <Navbar.Toggle aria-controls='basic-navbar-nav' />
-                    <Navbar.Collapse id='basic-navbar-nav'>
+                    <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={ this.toggleCollapse}/>
+                    <Navbar.Collapse id='basic-navbar-nav' >
                         <Nav className='ml-auto'>
                             <Link to='/psychologists'>
                                 <Nav.Link as='div'>See all psychologists</Nav.Link>
                             </Link>
                             {
-                                this.props.loggedUser
+                                this.props.loggedInUser
                                     ?
                                     <>
                                         <Nav.Link as='div' onClick={this.logOut}>Cerrar sesión</Nav.Link>
                                         <Link to='/profile'>
-                                            <Nav.Link as='div'>Hola, {this.props.loggedUser.name}</Nav.Link>
+                                            <Nav.Link as='div'>Hola, {this.props.loggedInUser.name}</Nav.Link>
                                         </Link>
                                     </>
                                     :
                                     <>
-                                        <Link to='/sign-up'>
+                                        <Link to='/signup'>
                                             <Nav.Link as='div'>Registro</Nav.Link>
                                         </Link>
-                                        <Link to='/log-in'>
+                                        <Link to='/login'>
                                             <Nav.Link as='div'>Inicio sesión</Nav.Link>
                                         </Link>
                                     </>
