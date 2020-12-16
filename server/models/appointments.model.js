@@ -4,14 +4,20 @@ const Schema = mongoose.Schema
 const appointmentSchema = new Schema({
     userId: {
         type: Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Patient'
     },
     psychId: {
         type: Schema.Types.ObjectId,
         ref: 'Psych'
     },
+    dateStart: Date,
+    dateEnd: Date,
+    message: String,
     time: String,
-    date: Date
+    meetType: {
+        type: String,
+        default: 'remota'
+    }
 }, {
     timestamps: true
 })

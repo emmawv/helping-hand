@@ -2,35 +2,49 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 
+const ObjectId = require('mongoose').Types.ObjectId
+
+const ISODate = require('mongoose').Types.Date
+
 const Appointment = require('../models/appointments.model')
 
-router.get('/getAllAppointments', (req, res) => {
+router.get('/getPatientAppointments', (req, res) => {
 
-    req.user.role === 'PATIENT'
-        ?
+    const userId = new ObjectId(req.user._id)
+
     Appointment
-        .find({userId: req.user.id})
+        .find({ userId })
+        .populate('psychId')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
-        : 
+
+})
+
+router.post('/getDocAppointments', (req, res) => {
+
+    const psychId = req.body.psychId
+
     Appointment
-        .find({ psychId: req.user.id })
+        .find(psychId)
+        .populate('userId')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
-        
+
 })
 
 router.post('/newAppointment', (req, res) => {
 
     const userId = req.user.id
-    const { psychId, time, date } = req.body
+    const { psychId, message, time } = req.body
+    const dateStart = new Date(`${req.body.date}T${req.body.time}Z`)
+    const dateEnd = new Date(`${req.body.date}T${req.body.time}-01:00`)
+    let meetType
+
+    req.body.meetType === '' ? meetType = 'remota' : meetType = req.body.meetType
 
     Appointment
-        .create({ userId, psychId, time, date })
-        .then(response => {
-            console.log(response)
-            res.json(response)
-        })
+        .create({ userId, psychId, dateStart, dateEnd, message, time, meetType })
+        .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 

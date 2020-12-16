@@ -95,7 +95,7 @@ const psychSchema = new Schema({
     role: {
         type: String,
         enum: ['DOC'],
-        desfault: 'DOC'
+        default: 'DOC'
     }
 }, {
     timestamps: true
