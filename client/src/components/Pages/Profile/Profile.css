@@ -1,0 +1,60 @@
+.app-card{
+    margin: 20px 0
+}
+
+.app-card img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px
+}
+
+.profile-page{
+    margin-top: 80px
+}
+
+.calender{
+    height: 200px
+}
+
+.infobtn{
+    background-color: #a5d499;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px auto;
+    border: none;
+    text-align: center;
+    display: block;
+
+    transition: all 0.3s;
+}
+
+.infobtn:active{
+    background-color: #a5d499;
+    border: none;
+}
+
+.infobtn:focus{
+    background-color: #a5d499;
+    border: none;
+}
+
+.infobtn:hover{
+    background-color: #92d381;
+    text-decoration: none;
+    color: white
+}
+
+@media all and (max-width: 575px) {
+    .app-card img{
+        height: 200px;
+        margin-bottom: 10px
+    }
+}
+
+@media all and (min-width: 769px) {
+    .app-card img{
+        height: 225px;
+    }
+}

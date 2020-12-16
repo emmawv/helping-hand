@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 
 import './PsychCard.css'
 
-const PsychCard = ({ psych }) => {
+const PsychCard = ({ profileImg, _id, meetType, name, surname, description, problems, agesTreated }) => {
     return (
         <Row className='psych-card'>
             
             <Col xs={12} md={3} lg={2}>
-                <img src={psych.profileImg} alt='Profile' />
+                <img src={profileImg} alt='Profile' />
                 
-                <Link to={`/psychologists/${psych._id}`} className='infobtn'>Ver mas</Link>
+                <Link to={`/psychologists/${_id}`} className='infobtn'>Ver mas</Link>
 
-                {!psych.meetType.includes('presencial')
+                {!meetType.includes('presencial')
                     ?
                     <p className='alert'><small>Este psicologo solo realiza consultas online</small></p>
                     : null
@@ -23,22 +23,22 @@ const PsychCard = ({ psych }) => {
             <Col xs={12} md={9} lg={10}>
                 <div className='psychcard-info'>
                     
-                    <h3>{psych.name} {psych.surname}</h3>
+                    <h3>{name} {surname}</h3>
                     <hr />
 
-                    {psych.description ? <p>psych.description</p> : null}
+                    {description ? <p>psych.description</p> : null}
 
                     <Row>
                         <Col xs={6}>
                             <strong>Trastornos y problemas tratados:</strong>
                             <ul>
-                                {psych.problems.map((elm, idx) => <li key={idx}>{elm.name}</li>)}
+                                {problems.map((elm, idx) => <li key={idx}>{elm.name}</li>)}
                             </ul>
                         </Col>
                         <Col xs={6}>
                             <strong>Edades tratadas:</strong>
                             <ul>
-                                {psych.agesTreated.map((elm, idx) => <li key={idx}>{elm}</li>)}
+                                {agesTreated.map((elm, idx) => <li key={idx}>{elm}</li>)}
                             </ul>
                         </Col>
                     </Row>

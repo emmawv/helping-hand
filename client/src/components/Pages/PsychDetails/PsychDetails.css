@@ -67,7 +67,8 @@
     background-color: rgb(116, 110, 110);
     font-weight: 0.5em;
     border-color: rgb(116, 110, 110);
-    color: white
+    color: white;
+    margin-top: 10px
 }
 
 @media all and (max-width: 425px) {

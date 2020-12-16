@@ -30,6 +30,8 @@ class PsychList extends Component {
 
     handleModal = visible => this.setState({ showModal: visible })
 
+    toggleButton = () => this.setState({ appointmentInactive: true })
+
     render() {
         return (
             <>
@@ -38,19 +40,19 @@ class PsychList extends Component {
                         <Col xs={12}>
                             <h1 className='title'>Listado de psicologos</h1>
                             <hr />
-                        <Accordion>
-                            <Card>
-                                <Card.Header>
-                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                        Mostrar el mapa
+                            <Accordion>
+                                <Card>
+                                    <Card.Header>
+                                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                            Mostrar el mapa
                                 </Accordion.Toggle>
-                                </Card.Header>
-                                <Accordion.Collapse eventKey="0">
-                                    <Card.Body style={{height: '350px'}}>
-                                            <MapContainer className='list-map' psych={this.state.psych}/>
-                                    </Card.Body>
-                                </Accordion.Collapse>
-                            </Card>
+                                    </Card.Header>
+                                    <Accordion.Collapse eventKey="0">
+                                        <Card.Body style={{ height: '350px' }}>
+                                            <MapContainer className='list-map' psych={this.state.psych} />
+                                        </Card.Body>
+                                    </Accordion.Collapse>
+                                </Card>
                             </Accordion>
                         </Col>
                         <Col xs={12}>
@@ -61,7 +63,7 @@ class PsychList extends Component {
 
                                             <>
                                                 <Col xs={12}>
-                                                    <PsychCard key={elm._id} psych={elm}/>
+                                                    <PsychCard key={elm._id} {...elm} />
                                                 </Col>
                                                 <hr />
                                             </>

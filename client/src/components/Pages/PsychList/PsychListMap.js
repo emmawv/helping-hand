@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
-import { Link } from 'react-router-dom'
 
 const mapStyles = {
     width: '100%',
@@ -10,19 +9,26 @@ const mapStyles = {
 const API_KEY = process.env.REACT_APP_API_KEY
 
 export class MapContainer extends Component {
-    state = {
-        showingInfoWindow: false,  // Hides or shows the InfoWindow
-        activeMarker: {},          // Shows the active marker upon click
-        selectedPlace: {},         // Shows the InfoWindow to the selected place upon a marker
-        psych: this.props.psych
-    };
+    constructor() {
+        super()
+        this.state = {
+            showingInfoWindow: false,  // Hides or shows the InfoWindow
+            activeMarker: {},          // Shows the active marker upon click
+            selectedPlace: {},         // Shows the InfoWindow to the selected place upon a marker
+            psych: undefined
+        };
+    }
 
-    onMarkerClick = (props, marker, e) =>
+    componentDidMount = () => this.setState({psych: this.props.psych})
+    
+
+    onMarkerClick = (props, marker, e) => {
         this.setState({
             selectedPlace: props,
             activeMarker: marker,
             showingInfoWindow: true
-        });
+        })
+    }
 
     onClose = () => {
         if (this.state.showingInfoWindow) {
@@ -31,7 +37,7 @@ export class MapContainer extends Component {
                 activeMarker: null
             });
         }
-    };
+    }
 
     render() {
         return (
@@ -41,7 +47,7 @@ export class MapContainer extends Component {
                 style={mapStyles}
                 initialCenter={{ lat: 40.364728375, lng: -3.4563729 }}
             >
-                {this.state.psych.map(elm => {
+                {this.state.psych ? this.state.psych.map(elm => {
                     return (
                         <Marker
                             position={{ lat: elm.practice.location.coordinates[0], lng: elm.practice.location.coordinates[1] }}
@@ -51,7 +57,7 @@ export class MapContainer extends Component {
                             image={elm.profileImg}
                         />
                     )
-                })}
+                }) : null}
                 <InfoWindow
                     marker={this.state.activeMarker}
                     visible={this.state.showingInfoWindow}

@@ -9,6 +9,7 @@ export default class AppointmentService {
         })
     }
 
-    getAllApointments = () => this.apiHandler.get('/getAllAppointments')
-    makeNewAppointment = info => this.apiHandler.post('/newAppointment')
+    getPatientAppointments = () => this.apiHandler.get('/getPatientAppointments')
+    getDocAppointments = psychId => this.apiHandler.post('/getDocAppointments', psychId)
+    makeNewAppointment = info => this.apiHandler.post('/newAppointment', info)
 }

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import AppointmentService from './../../../service/appointments.service'
+import Moment from 'react-moment'
 
-import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 
 class AppointmentForm extends Component {
 
@@ -10,9 +11,56 @@ class AppointmentForm extends Component {
         this.state = {
             psychId: '',
             time: '',
-            date: ''
+            date: '',
+            message: '',
+            meetType: '',
+            availableTimes: undefined
         }
         this.appointmentService = new AppointmentService()
+    }
+
+
+    componentDidMount = () => this.setState({ psychId: this.props.psych._id })
+
+    handleDateInputChange = e => {
+        this.setState({
+            date: e.target.value
+        }, () => {
+            this.filterTimes()
+        })
+
+    }
+
+    filterTimes = () => {
+        this.appointmentService
+            .getDocAppointments(this.state.pychId)
+            .then(res => {
+                const bookedTimes = []
+
+                res.data.filter(elm => {
+                    const date = new Date(elm.dateStart)
+                    let month = date.getMonth() + 1
+                    let dt = date.getDate()
+
+                    if (dt < 10) {
+                        dt = '0' + dt;
+                    }
+                    if (month < 10) {
+                        month = '0' + month;
+                    }
+
+                    const formattedDate = (date.getFullYear() + '-' + month + '-' + dt)
+
+                    return (formattedDate === this.state.date)
+                }).forEach(dateelm => bookedTimes.push(dateelm.time))
+                    
+                const availableTimes = [...this.props.psych.timetable].filter(elm => !bookedTimes.includes(elm))
+
+                return (availableTimes)
+            })
+            .then(availableTimes => this.setState({ availableTimes: [...availableTimes] }))
+            .then(() => console.log(this.state.availableTimes))
+            .catch(err => console.log(err))
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -23,14 +71,11 @@ class AppointmentForm extends Component {
         this.appointmentService
             .makeNewAppointment(this.state)
             .then(res => {
-                console.log(res)
                 this.props.closeModal()
                 this.props.toggleButton()
             })
             .catch(err => console.log(err))
     }
-
-    componentDidMount = () => this.setState({psych: this.props.psych})
 
 
     render() {
@@ -43,17 +88,34 @@ class AppointmentForm extends Component {
                         <hr />
 
                         <Form onSubmit={this.handleSubmit}>
-                            <Form.Group controlId="time">
-                                <Form.Label>Time</Form.Label>
-                                <Form.Control as="select" name='time' onChange={this.handleInputChange}>
-                                    <option selected>Select one...</option>
-                                    {this.props.psych.timetable.map(elm => <option>{elm}</option>)}
-                                </Form.Control>
-                            </Form.Group>
                             <Form.Group controlId="date">
-                                <Form.Label>Date</Form.Label>
-                                <Form.Control type="date" name="date" value={this.state.date} onChange={this.handleInputChange} />
+                                <Form.Label>Fecha</Form.Label>
+                                <Form.Control type="date" name="date" value={this.state.date} onChange={this.handleDateInputChange} />
                             </Form.Group>
+                            {(this.state.date && this.state.availableTimes) ?
+                                <>
+                                    {this.props.psych.meetType.includes('presencial')
+                                        ?
+                                        <Form.Group>
+                                            <Form.Label>Forma de terapia</Form.Label>
+                                            <Form.Check value="presencial" label="Presencial" type='radio' id='presencial' name='meetType' onChange={this.handleInputChange} />
+                                            <Form.Check value="remota" label="Remota" type='radio' id='remota' name='meetType' onChange={this.handleInputChange} />
+                                        </Form.Group>
+                                        : null}
+                                    <Form.Group controlId="time">
+                                        <Form.Label>Hora</Form.Label>
+                                        <Form.Control as="select" name='time' onChange={this.handleInputChange}>
+                                            <option selected>Select one...</option>
+                                            {this.state.availableTimes.map(elm => <option>{elm}</option>)}
+                                        </Form.Control>
+                                    </Form.Group>
+                                    <Form.Group controlId="message">
+                                        <Form.Label>Mensaje</Form.Label>
+                                        <Form.Control as="textarea" rows={3} name="message" value={this.state.message} onChange={this.handleInputChange} placeholder={'Si hay algo que creas que necesite saber este especialista antes de acudir a tu cita hazselo saber...'} />
+                                    </Form.Group>
+                                </>
+                                : <p>Please select a date to continue</p>
+                            }
                             <Button type="submit">Pedir cita</Button>
                         </Form>
                     </>
