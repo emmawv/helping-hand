@@ -33,16 +33,53 @@ class InfoPage extends Component {
                     <h2 className='info-title'>Tus datos</h2>
                     <hr />
                     <Row>
-                        <Col xs={{ span: 6, offset: 1 }}>
-                            <p><strong>Nombre:</strong> {loggedUser.name}</p>
-                            <p><strong>Apellido:</strong> {loggedUser.surname}</p>
-                            <p><strong>Email:</strong> {loggedUser.email}</p>
-                            <p><strong>Foto de perfil:</strong></p>
-                            <img className='profilepic-info' src={loggedUser.profileImg} alt='profile pic' />
-                        </Col>
-                        <Col xs={4}>
-                            <Button type='button' variant='outline-danger' onClick={this.onDeleteClick}> Eliminar cuenta</Button>
-                        </Col>
+                        {loggedUser.role === 'DOC'
+                            ?
+                            <>
+                                <Col xs={4}>
+                                    <img className='profilepic-info' src={loggedUser.profileImg} alt='profile pic' />
+                                </Col>
+                                <Col xs={4}>
+                                    <p><strong>Nombre:</strong> {loggedUser.name}</p>
+                                    <p><strong>Apellido:</strong> {loggedUser.surname}</p>
+                                    <p><strong>Email:</strong> {loggedUser.email}</p>
+                                    <p><strong>Telefono:</strong> {loggedUser.telephone}</p>
+                                    <p><strong>Sobre ti:</strong> {loggedUser.shortBio}</p>
+                                    <p><strong>Tarifa:</strong> {loggedUser.price} €/hora</p>
+                                </Col>
+                                <Col xs={4}>
+                                    <p><strong>Tipo de terapia:</strong> {loggedUser.meetType.length === 1 ? loggedUser.meetType[0] : loggedUser.meetType.map(elm => `${elm} | `)}</p>
+                                    {loggedUser.practice.name ?
+                                        <>
+                                            <p><strong>Consulta:</strong></p>
+                                            <p>Nombre: {loggedUser.practice.name}</p>
+                                            <p>Ubicacion: {loggedUser.practice.location.coordinates}</p>
+                                        </>
+                                        : null
+                                    }
+                                    <p><strong>Horario:</strong> {loggedUser.timetable.map(elm => `${elm} | `)}</p>
+                                    <p><strong>Edades tratadas:</strong></p>
+                                    <ul>{loggedUser.agesTreated.map(elm => <li>{elm}</li>)}
+                                    </ul>
+                                </Col>
+
+                            </>
+                            :
+                            <>
+                                <Col xs={{ span: 4, offset: 1 }}>
+                                    <img className='profilepic-info' src={loggedUser.profileImg} alt='profile pic' />
+                                </Col>
+                                <Col xs={4}>
+                                    <p><strong>Nombre:</strong> {loggedUser.name}</p>
+                                    <p><strong>Apellido:</strong> {loggedUser.surname}</p>
+                                    <p><strong>Email:</strong> {loggedUser.email}</p>
+                                </Col>
+                            </>
+                        }
+
+
+                        <Button type='button' variant='outline-danger' onClick={this.onDeleteClick}> Eliminar cuenta</Button>
+
                     </Row>
                 </Container>
             </>

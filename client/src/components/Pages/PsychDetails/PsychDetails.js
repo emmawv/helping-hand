@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap'
 import Geocode from "react-geocode"
-import { Link } from 'react-router-dom'
+
 
 import PsychService from '../../../service/psychologists.service'
 import MapContainer from './DetailsMap'
 import AppointmentForm from '../AppointmentForm/AppointmentForm'
+import Loader from '../Loader/Loader'
 import './PsychDetails.css'
 
 class PsychDetails extends Component {
@@ -96,10 +97,10 @@ class PsychDetails extends Component {
                             <Col md={8} lg={9}>
                                 <Row>
                                     <Col xs={7}>
-                                        {this.state.psych.description
+                                        {this.state.psych.shortBio
                                             ?
                                             <>
-                                                <h3>Sobre mi:</h3><p>{this.state.psych.description}</p>
+                                                <h3>Sobre mi:</h3><p>{this.state.psych.shortBio}</p>
                                             </>
                                             : null}
                                         <h4>Problemas y trastornos tratados: </h4>
@@ -135,7 +136,7 @@ class PsychDetails extends Component {
                         </Row>
                     </>
                     :
-                    <p>please wait...loading</p>
+                    <Loader />
                 }
                 <Modal show={this.state.showAppointmentModal} onHide={() => this.handleAppointmentModal(false)}>
                     <Modal.Body>
@@ -146,7 +147,7 @@ class PsychDetails extends Component {
                     <Modal.Body>
                         {this.state.psych ?
                             <>
-                                <a className='wpp' href={`https://api.whatsapp.com/send?phone=34${this.state.psych.telephone}`}>WhatsApp</a>
+                                <a className='wpp' rel='noreferrer' target="_blank" href={`https://api.whatsapp.com/send?phone=34${this.state.psych.telephone}`}>WhatsApp</a>
                                 <a className='tlf' href={`tel:+34${this.state.psych.telephone}`}>Llamar</a>
                             </>
                             : null}

@@ -4,6 +4,7 @@ import { Container, Row, Col, Accordion, Card, Button, Toast } from 'react-boots
 import PsychService from './../../../service/psychologists.service'
 import PsychCard from './PsychCard'
 import MapContainer from './PsychListMap'
+import Loader from '../Loader/Loader'
 import './PsychList.css'
 
 class PsychList extends Component {
@@ -68,7 +69,7 @@ class PsychList extends Component {
                                                 <hr />
                                             </>
                                         )
-                                    }) : <p>Please wait...loading</p>
+                                    }) : <Loader />
                                 }
                             </Row>
                         </Col>

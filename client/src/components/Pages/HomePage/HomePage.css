@@ -50,16 +50,21 @@
 }
 
 .info p{
-    padding: 0 20px
+    padding: 0 10px
 }
 
-.svg{
+.icon{
+    width: 45px;
     margin-bottom: 10px
 }
 
 @media all and (max-width: 768px){
     .hero>div{
         padding: 8rem 0
+    }
+
+    .icon{
+        margin-top: 20px
     }
 }
 

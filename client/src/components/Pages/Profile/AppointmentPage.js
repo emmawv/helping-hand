@@ -4,6 +4,7 @@ import { Container, Accordion, Card, Button } from 'react-bootstrap'
 import AppointmentService from '../../../service/appointments.service'
 import AppointmentCard from './AppointmentCard'
 import Schedule from './Schedule'
+import Loader from '../Loader/Loader'
 
 
 export default class AppointmentPage extends Component {
@@ -51,7 +52,7 @@ export default class AppointmentPage extends Component {
                                 )}
                         </Container>
                         :
-                        <h2>Gracias por tu paciencia, estamos cargando la informacion de tu perfil</h2>
+                        <Loader />
                 }
             </>
         )

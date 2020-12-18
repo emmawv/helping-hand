@@ -29,7 +29,7 @@ const patientSchema = new Schema({
     password: String,
     profileImg: {
         type: String,
-        default: 'https://lh3.googleusercontent.com/proxy/GKXepNRFEUqVzaTydSOlt5WIPPTJ11I2Wp9YzM43Lm6HHs9p9-v0mr_4aHinV7fnSOi-zadsRVlID0i3wwUEVh3KS59a78r7Y0mphv1g0aMHBin70N2czIkHomKv1mlijFOTqT_U81o'
+        default: 'https://res.cloudinary.com/djqsmqs26/image/upload/v1608271085/helping-hand/Twitter-new-2017-avatar-001_vjlpu9.png'
     },
     role: {
         type: String,

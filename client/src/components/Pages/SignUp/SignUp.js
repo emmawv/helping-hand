@@ -30,7 +30,7 @@ class Signup extends Component {
                 this.props.storeUser(theLoggedInUser.data)
                 this.props.history.push('/psychologists')
             })
-            .catch(err => console.log('HA HABIDO UN ERROR FUCK', err))
+            .catch(err => new Error(err))
     }
 
 

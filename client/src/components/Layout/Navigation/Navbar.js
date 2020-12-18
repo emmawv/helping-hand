@@ -46,7 +46,7 @@ export default class Navigation extends Component {
         return (
             <div id='navbar'>
                 <Navbar variant={this.state.variant} style={{ background: `${this.state.background}` }} fixed='top' expand='md'>
-                    <Navbar.Brand href='/'>Navbar</Navbar.Brand>
+                    <Navbar.Brand href='/'>Home</Navbar.Brand>
                     <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={this.toggleCollapse} />
                     <Navbar.Collapse id='basic-navbar-nav' >
                         <Nav className='ml-auto'>

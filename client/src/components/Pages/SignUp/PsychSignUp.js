@@ -37,7 +37,7 @@ class PsychSignup extends Component {
         this.problemService
             .getProblems()
             .then(res => this.setState({ allProblems: res.data }))
-            .catch(err => console.log(err))
+            .catch(err => new Error(err))
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -136,11 +136,7 @@ class PsychSignup extends Component {
     }
 
 
-
     render() {
-
-        console.log(this.state)
-
 
         return (
             <Container className='signup-form'>
