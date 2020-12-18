@@ -138,7 +138,7 @@ class AppointmentForm extends Component {
                                 </>
                                 : <p>Please select a date to continue</p>
                             }
-                            <Button type="submit">Pedir cita</Button>
+                            <Button type="submit" variant='info'>Pedir cita</Button>
                         </Form>
                     </>
                     : <p>Loading</p>

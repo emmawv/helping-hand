@@ -14,7 +14,7 @@ const HomePage = () => {
                     <source src='https://res.cloudinary.com/djqsmqs26/video/upload/v1607365473/helping-hand/Pexels_Videos_1723017_1_rtp1hb.mp4' type='video/mp4' />
                 </video>
                 <div>
-                    <h1>Bienvenido a helping-hand</h1>
+                    <h1>Bienvenido a helping_hand</h1>
                     <p>A veces la vida se complica, pero pedir ayuda puede ser facil. Queremos ayudarte a encontrar la persona que pueda acompanarte.</p>
                     <Link to='/psychologists' className='button'>Start searching for a professional</Link>
                 </div>

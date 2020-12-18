@@ -62,23 +62,27 @@ class InfoPage extends Component {
                                     <ul>{loggedUser.agesTreated.map(elm => <li>{elm}</li>)}
                                     </ul>
                                 </Col>
+                                <Col xs={12}>
+                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 0 0' }}> Eliminar cuenta</Button>
+                                </Col>
 
                             </>
                             :
                             <>
-                                <Col xs={{ span: 4, offset: 1 }}>
+                                <Col xs={{ span: 3, offset: 3 }}>
                                     <img className='profilepic-info' src={loggedUser.profileImg} alt='profile pic' />
                                 </Col>
-                                <Col xs={4}>
+                                <Col xs={3}>
                                     <p><strong>Nombre:</strong> {loggedUser.name}</p>
                                     <p><strong>Apellido:</strong> {loggedUser.surname}</p>
                                     <p><strong>Email:</strong> {loggedUser.email}</p>
                                 </Col>
+                                <Col xs={{ span: 9, offset: 3 }}>
+                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 0 0' }}> Eliminar cuenta</Button>
+                                </Col>
                             </>
                         }  
-                        <Col xs={{span: 10, offset: 1}}>
-                            <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 0 0' }}> Eliminar cuenta</Button>
-                        </Col>
+                        
 
                     </Row>
                 </Container>
