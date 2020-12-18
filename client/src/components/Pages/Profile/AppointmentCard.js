@@ -4,7 +4,7 @@ import 'moment/locale/es'
 
 import './Profile.css'
 
-const AppointmentCard = ({ userId, psychId, dateStart, dateEnd, message, meetType, loggedUser, _id }) => {
+const AppointmentCard = ({ userId, psychId, dateStart, dateEnd, message, meetType, loggedUser, address}) => {
 
     return (
         <>
@@ -24,7 +24,7 @@ const AppointmentCard = ({ userId, psychId, dateStart, dateEnd, message, meetTyp
                             <Col xs={6} sm={12}>
                                 <p><strong>Tu mensaje:</strong> {message}</p>
                                 <p><strong>Tipo de terapia:</strong> {meetType}</p>
-                                {meetType === 'presencial' ? <p><strong>Direccion:</strong> </p> : null}
+                                {meetType === 'presencial' ? <p><strong>Direccion:</strong> {address}</p> : null}
                             </Col>
                         </Row>
                     </Col>

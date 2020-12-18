@@ -75,10 +75,10 @@ class InfoPage extends Component {
                                     <p><strong>Email:</strong> {loggedUser.email}</p>
                                 </Col>
                             </>
-                        }
-
-
-                        <Button type='button' variant='outline-danger' onClick={this.onDeleteClick}> Eliminar cuenta</Button>
+                        }  
+                        <Col xs={{span: 10, offset: 1}}>
+                            <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 0 0' }}> Eliminar cuenta</Button>
+                        </Col>
 
                     </Row>
                 </Container>

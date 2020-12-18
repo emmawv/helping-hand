@@ -23,7 +23,7 @@ router.get('/getAppointments', (req, res) => {
 router.post('/newAppointment', (req, res) => {
 
     const userId = req.user.id
-    const { psychId, message, time } = req.body
+    const { psychId, message, time, address } = req.body
     const dateStart = new Date(`${req.body.date}T${req.body.time}Z`)
     const dateEnd = new Date(`${req.body.date}T${req.body.time}-01:00`)
     let meetType
@@ -31,7 +31,7 @@ router.post('/newAppointment', (req, res) => {
     req.body.meetType === '' ? meetType = 'remota' : meetType = req.body.meetType
 
     Appointment
-        .create({ userId, psychId, dateStart, dateEnd, message, time, meetType })
+        .create({ userId, psychId, dateStart, dateEnd, message, time, meetType, address })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

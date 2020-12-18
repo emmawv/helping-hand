@@ -17,7 +17,8 @@ const appointmentSchema = new Schema({
     meetType: {
         type: String,
         default: 'remota'
-    }
+    },
+    address: String
 }, {
     timestamps: true
 })

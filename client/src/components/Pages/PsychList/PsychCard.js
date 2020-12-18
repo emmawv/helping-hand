@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 import './PsychCard.css'
 
-const PsychCard = ({ profileImg, _id, meetType, name, surname, description, problems, agesTreated }) => {
+const PsychCard = ({ profileImg, _id, meetType, name, surname, shortBio, problems, agesTreated }) => {
     return (
         <Row className='psych-card'>
             
@@ -26,7 +26,7 @@ const PsychCard = ({ profileImg, _id, meetType, name, surname, description, prob
                     <h3>{name} {surname}</h3>
                     <hr />
 
-                    {description ? <p>psych.description</p> : null}
+                    {shortBio ? <p>{shortBio}</p> : null}
 
                     <Row>
                         <Col xs={6}>
@@ -34,6 +34,7 @@ const PsychCard = ({ profileImg, _id, meetType, name, surname, description, prob
                             <ul>
                                 {problems.map((elm, idx) => <li key={idx}>{elm.name}</li>)}
                             </ul>
+                            
                         </Col>
                         <Col xs={6}>
                             <strong>Edades tratadas:</strong>

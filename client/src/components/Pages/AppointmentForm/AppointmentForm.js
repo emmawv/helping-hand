@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import AppointmentService from './../../../service/appointments.service'
 import Moment from 'react-moment'
+import Geocode from "react-geocode"
 
 import { Form, Button } from 'react-bootstrap'
 
@@ -14,13 +15,18 @@ class AppointmentForm extends Component {
             date: '',
             message: '',
             meetType: '',
-            availableTimes: undefined
+            availableTimes: undefined,
+            address: undefined
         }
         this.appointmentService = new AppointmentService()
     }
 
 
-    componentDidMount = () => this.setState({ psychId: this.props.psych._id })
+    componentDidMount = () => {
+        this.setState({
+            psychId: this.props.psych._id
+        }, () => this.setGeocode())
+    }
 
     handleDateInputChange = e => {
         this.setState({
@@ -62,6 +68,21 @@ class AppointmentForm extends Component {
             })
             .then(availableTimes => this.setState({ availableTimes: [...availableTimes] }))
             .catch(err => new Error(err))
+    }
+
+    setGeocode = () => {
+
+        Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+
+        Geocode.setLanguage("es")
+
+        Geocode.setRegion("es");
+
+        Geocode
+            .fromLatLng(this.props.psych.practice.location.coordinates[0], this.props.psych.practice.location.coordinates[1])
+            .then(response => this.setState({ address: response.results[0].formatted_address }))
+            .catch((err) => new Error(err))
+
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
