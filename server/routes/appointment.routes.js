@@ -8,25 +8,13 @@ const ISODate = require('mongoose').Types.Date
 
 const Appointment = require('../models/appointments.model')
 
-router.get('/getPatientAppointments', (req, res) => {
 
-    const userId = new ObjectId(req.user._id)
-
-    Appointment
-        .find({ userId })
-        .populate('psychId')
-        .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
-
-})
-
-router.post('/getDocAppointments', (req, res) => {
-
-    const psychId = req.body.psychId
+router.get('/getAppointments', (req, res) => {
 
     Appointment
-        .find(psychId)
+        .find()
         .populate('userId')
+        .populate('psychId')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 

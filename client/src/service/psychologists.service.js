@@ -11,5 +11,4 @@ export default class PsychService {
 
     getAllPsych = () => this.apiHandler.get('/')
     getOnePsych = psychId => this.apiHandler.get(`/${psychId}`)
-    
 }

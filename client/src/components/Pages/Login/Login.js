@@ -24,7 +24,7 @@ class Login extends Component {
             .login(this.state)
             .then(theLoggedInUser => {
                 this.props.storeUser(theLoggedInUser.data)
-                this.props.history.push('/psychologists')
+                this.props.history.push('/')
             })
             .catch((err) => new Error(err))
     }
@@ -52,7 +52,7 @@ class Login extends Component {
                     </Col>
                     <Col xs={12} md={6}>
                         <div>
-                            <img src='https://res.cloudinary.com/djqsmqs26/image/upload/v1607520324/helping-hand/11098_kfvqo1.jpg' alt='illustration tiny people watering head full of flowers' />
+                            <img src='https://res.cloudinary.com/djqsmqs26/image/upload/v1607520416/helping-hand/4824_ylo6fb.jpg' alt='illustration person attending a therapy session'/>
                         </div>
                     </Col>
                 </Row>

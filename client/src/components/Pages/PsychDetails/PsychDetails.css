@@ -21,7 +21,7 @@
  text-decoration: none
 }
 
-.contact-btn{
+.contact-btn, .contact-btn:focus, .contact-btn:visited{
     background-color: white;
     color:  #a5d499;
     padding: 10px 20px;
@@ -34,7 +34,7 @@
     transition: all 0.3s;
 }
 
-.contact-btn:hover{
+.contact-btn:active, .contact-btn:hover{
     text-decoration: none;
     background-color:  #a5d499;
     border-color: #a5d499;
@@ -69,6 +69,40 @@
     border-color: rgb(116, 110, 110);
     color: white;
     margin-top: 10px
+}
+
+.wpp, .tlf{
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px auto;
+    border: 1px solid  #a5d499;
+    text-align: center;
+    display: block;
+
+    transition: all 0.3s;
+}
+
+.wpp{
+    border:1px solid #59C157;
+    color: #59C157;   
+}
+
+.wpp:hover{
+    text-decoration: none;
+    background-color: #59C157;
+    color: white
+}
+
+.tlf{
+    border: 1px solid #2A558C;
+    color: #2A558C;
+    background-color: white
+}
+
+.tlf:hover{
+    text-decoration: none;
+    background-color: #2A558C;
+    color: white
 }
 
 @media all and (max-width: 425px) {

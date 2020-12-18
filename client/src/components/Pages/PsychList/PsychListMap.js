@@ -9,18 +9,18 @@ const mapStyles = {
 const API_KEY = process.env.REACT_APP_API_KEY
 
 export class MapContainer extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             showingInfoWindow: false,  // Hides or shows the InfoWindow
             activeMarker: {},          // Shows the active marker upon click
             selectedPlace: {},         // Shows the InfoWindow to the selected place upon a marker
-            psych: undefined
+            psych: this.props.psych
         };
     }
 
-    componentDidMount = () => this.setState({psych: this.props.psych})
-    
+    //componentDidMount = () => this.setState({psych: this.props.psych})
+
 
     onMarkerClick = (props, marker, e) => {
         this.setState({
@@ -40,38 +40,47 @@ export class MapContainer extends Component {
     }
 
     render() {
-        return (
-            <Map
-                google={this.props.google}
-                zoom={8}
-                style={mapStyles}
-                initialCenter={{ lat: 40.364728375, lng: -3.4563729 }}
-            >
-                {this.state.psych ? this.state.psych.map(elm => {
-                    return (
-                        <Marker
-                            position={{ lat: elm.practice.location.coordinates[0], lng: elm.practice.location.coordinates[1] }}
-                            onClick={this.onMarkerClick}
-                            name={elm.name}
-                            surname={elm.surname}
-                            image={elm.profileImg}
-                        />
-                    )
-                }) : null}
-                <InfoWindow
-                    marker={this.state.activeMarker}
-                    visible={this.state.showingInfoWindow}
-                    onClose={this.onClose}>
-                    <div className='marker'>
-                        <img src={this.state.selectedPlace.image} alt='chosen psychologist' />
-                        <div>
-                            {this.state.selectedPlace.name} <br />
-                            {this.state.selectedPlace.surname}
-                        </div>
-                    </div>
-                </InfoWindow>
 
-            </Map >
+        return (
+            <>
+                {this.props.psych ?
+                    <Map
+                        google={this.props.google}
+                        zoom={8}
+                        style={mapStyles}
+                        initialCenter={{ lat: 40.364728375, lng: -3.4563729 }}
+                    >
+                        {this.state.psych ? this.state.psych.map(elm => {
+                            return (
+                                <Marker
+                                    position={{ lat: elm.practice.location.coordinates[0], lng: elm.practice.location.coordinates[1] }}
+                                    onClick={this.onMarkerClick}
+                                    name={elm.name}
+                                    surname={elm.surname}
+                                    image={elm.profileImg}
+                                    id={elm._id}
+                                />
+                            )
+                        }) : null}
+
+                        <InfoWindow
+                            marker={this.state.activeMarker}
+                            visible={this.state.showingInfoWindow}
+                            onClose={this.onClose}>
+                            <div className='marker'>
+                                <img src={this.state.selectedPlace.image} alt='chosen psychologist' />
+                                <div>
+                                    {this.state.selectedPlace.name} <br />
+                                    {this.state.selectedPlace.surname}
+                                </div>
+
+                            </div>
+
+                        </InfoWindow>
+                    </Map >
+                    : null
+                }
+            </>
         )
     }
 }

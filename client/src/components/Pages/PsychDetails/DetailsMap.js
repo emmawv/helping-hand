@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react'
 
 import './PsychDetails.css'
 
@@ -36,7 +36,6 @@ export class MapContainer extends Component {
     render() {
         return (
             <aside className='map'>
-                <section>
                 <Map
                     bootstrapURLKeys={{
                         key: process.env.REACT_APP_GOOGLE_KEY,
@@ -46,10 +45,9 @@ export class MapContainer extends Component {
                     style={mapStyles}
                     initialCenter={{ lat: this.props.psych.practice.location.coordinates[0], lng: this.props.psych.practice.location.coordinates[1] }}
                 >
-                    <Marker position={{ lat: this.props.psych.practice.location.coordinates[0], lng: this.props.psych.practice.location.coordinates[1] }}/>
-                    </Map >
-                </section>
-                <p> {this.props.address} </p>
+                    <Marker position={{ lat: this.props.psych.practice.location.coordinates[0], lng: this.props.psych.practice.location.coordinates[1] }} />
+
+                </Map >
             </aside>
         )
     }

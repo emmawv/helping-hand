@@ -7,6 +7,7 @@
     border: none
 }
 
+
 .signup-submit:active{
     background-color: #db6d2e;
     border: none;
@@ -22,9 +23,21 @@
 }
 
 .signup-form{
-    margin-top: 150px
+    margin: 100px auto
 }
 
 .signup-form img{
     width: 100%
+}
+
+.add-ages{
+    display: flex
+}
+
+.psych-title{
+    text-align: center
+}
+
+.signup-form label{
+    margin-top: 10px
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, Card, Button, Modal } from 'react-bootstrap'
 import Geocode from "react-geocode"
+import { Link } from 'react-router-dom'
 
 import PsychService from '../../../service/psychologists.service'
 import MapContainer from './DetailsMap'
@@ -36,7 +37,7 @@ class PsychDetails extends Component {
 
     handleContactModal = visible => this.setState({ showContactModal: visible })
 
-    toggleButton = () => this.setState({ appointmentButtonInactive: true})
+    toggleButton = () => this.setState({ appointmentButtonInactive: true })
 
     setGeocode = () => {
 
@@ -77,13 +78,13 @@ class PsychDetails extends Component {
                                 </div>
                                 {this.props.loggedUser ?
                                     <>
-                                    {!this.state.appointmentButtonInactive
-                                        ?
-                                        <Button onClick={() => this.handleAppointmentModal(true)} className='infobtn' block>Pedir cita</Button>
-                                        :
-                                        <Button onClick={() => this.handleAppointmentModal(true)} id='infobtn-off' disabled block>Cita pedida</Button>
-                                    }
-                                        
+                                        {!this.state.appointmentButtonInactive
+                                            ?
+                                            <Button onClick={() => this.handleAppointmentModal(true)} className='infobtn' block>Pedir cita</Button>
+                                            :
+                                            <Button onClick={() => this.handleAppointmentModal(true)} id='infobtn-off' disabled block>Cita pedida</Button>
+                                        }
+
                                         <Button onClick={() => this.handleContactModal(true)} className='contact-btn' block>Contactar</Button>
                                     </>
                                     :
@@ -116,12 +117,18 @@ class PsychDetails extends Component {
                                         }
                                     </Col>
                                     <Col xs={5}>
-                                        <Card style={{ width: '100%' }}>
-                                            <MapContainer psych={this.state.psych} address={this.state.address} />
-                                            <Card.Text style={{ padding: '10px' }}>
-                                                {this.state.address ? this.state.address : null}
-                                            </Card.Text>
-                                        </Card>
+                                        {this.state.psych.practice.name ?
+                                            <Card style={{ width: '100%' }}>
+                                                <MapContainer psych={this.state.psych} />
+                                                <Card.Text style={{ padding: '10px' }}>
+                                                    {this.state.address ? this.state.address : null}
+                                                </Card.Text>
+                                            </Card>
+                                            : null}
+                                        <h4 style={{ marginTop: '10px' }}>Horario:</h4>
+                                        <p>{this.state.psych.timetable.map(elm => `${elm} | `)}</p>
+                                        <h4 style={{ marginTop: '10px' }}>Precio:</h4>
+                                        <p>{`${this.state.psych.price} €/hora`}</p>
                                     </Col>
                                 </Row>
                             </Col>
@@ -132,7 +139,17 @@ class PsychDetails extends Component {
                 }
                 <Modal show={this.state.showAppointmentModal} onHide={() => this.handleAppointmentModal(false)}>
                     <Modal.Body>
-                        <AppointmentForm closeModal={() => this.handleAppointmentModal(false)} toggleButton={() => this.toggleButton()} psych={this.state.psych} loggedUser={this.props.loggedUSer}/>
+                        <AppointmentForm closeModal={() => this.handleAppointmentModal(false)} toggleButton={() => this.toggleButton()} psych={this.state.psych} loggedUser={this.props.loggedUSer} />
+                    </Modal.Body>
+                </Modal>
+                <Modal show={this.state.showContactModal} onHide={() => this.handleContactModal(false)}>
+                    <Modal.Body>
+                        {this.state.psych ?
+                            <>
+                                <a className='wpp' href={`https://api.whatsapp.com/send?phone=34${this.state.psych.telephone}`}>WhatsApp</a>
+                                <a className='tlf' href={`tel:+34${this.state.psych.telephone}`}>Llamar</a>
+                            </>
+                            : null}
                     </Modal.Body>
                 </Modal>
             </Container>

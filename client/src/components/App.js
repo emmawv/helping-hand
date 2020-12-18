@@ -11,12 +11,14 @@ import Navigation from './Layout/Navigation/Navbar'
 import Login from './Pages/Login/Login'
 import SignUp from './Pages/SignUp/SignUp'
 import AuthServices from '../service/auth.service'
-import Profile from './Pages/Profile/Profile'
+import PsychSignUp from './Pages/SignUp/PsychSignUp'
+import AppointmentPage from './Pages/Profile/AppointmentPage'
+import InfoPage from './Pages/Profile/InfoPage'
 
 
 
 export default class App extends Component {
-  
+
   constructor() {
     super()
     this.state = {
@@ -37,22 +39,24 @@ export default class App extends Component {
 
   setTheUser = user => this.setState({ loggedInUser: user })
 
-  setNavBar = () => this.setState({notIsMain: true})
-  
-  
+  setNavBar = () => this.setState({ notIsMain: true })
+
+
   render() {
-  return(
-    <>
-      <Navigation storeUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
-      <Switch>
-        <Route path='/' exact render={() => <HomePage />} />
-        <Route path='/psychologists' exact render={() => <PsychList loggedUser={this.state.loggedInUser} />}/>
-        <Route path='/psychologists/:psych_id' render={props => <PsychDetails {...props} loggedUser={this.state.loggedInUser} />}/>
-        <Route path='/signup' render={props => <SignUp storeUser={this.setTheUser} {...props} />} />
-        <Route path='/login' render={props => <Login storeUser={this.setTheUser} {...props} />} />
-        <Route path='/profile' render={() => this.state.loggedInUser ? <Profile loggedUser={this.state.loggedInUser} /> : <Redirect to='/login' />} />
-      </Switch>
-    </>
-  )
+    return (
+      <>
+        <Navigation storeUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
+        <Switch>
+          <Route path='/' exact render={() => <HomePage />} />
+          <Route path='/psychologists' exact render={() => <PsychList loggedUser={this.state.loggedInUser} />} />
+          <Route path='/psychologists/:psych_id' render={props => <PsychDetails {...props} loggedUser={this.state.loggedInUser} />} />
+          <Route path='/signup' render={props => <SignUp storeUser={this.setTheUser} {...props} />} />
+          <Route path='/psych-signup' render={props => <PsychSignUp storeUser={this.setTheUser} {...props} />} />
+          <Route path='/login' render={props => <Login storeUser={this.setTheUser} {...props} />} />
+          <Route path='/profile/appointments' render={() => this.state.loggedInUser ? <AppointmentPage loggedUser={this.state.loggedInUser} /> : <Redirect to="/login" />} />
+          <Route path='/profile/info' render={props => this.state.loggedInUser ? <InfoPage loggedUser={this.state.loggedInUser} {...props} storeUser={this.setTheUser}/> : <Redirect to="/login" />} />
+        </Switch>
+      </>
+    )
   }
 }

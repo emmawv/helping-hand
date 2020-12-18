@@ -1,5 +1,5 @@
 import { Component, React } from 'react'
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import './Navbar.css'
@@ -26,20 +26,20 @@ export default class Navigation extends Component {
     }
 
     setCollapseColour = () => {
-        this.state.collapse ? this.setState({ background: 'transparent', variant: 'light' }) :  this.setState({ background: '#6289D9', variant: 'dark' })
+        this.state.collapse ? this.setState({ background: 'transparent', variant: 'light' }) : this.setState({ background: '#6289D9', variant: 'dark' })
     }
 
     toggleCollapse = () => {
         this.setCollapseColour()
         this.state.collapse ? this.setState({ collapse: false }) : this.setState({ collapse: true })
-        
+
     }
 
     logOut = () => {
         this.authService
             .logout()
             .then(res => this.props.storeUser(undefined))
-            .catch(err => console.log(err))
+            .catch(err => new Error(err))
     }
 
     render() {
@@ -47,7 +47,7 @@ export default class Navigation extends Component {
             <div id='navbar'>
                 <Navbar variant={this.state.variant} style={{ background: `${this.state.background}` }} fixed='top' expand='md'>
                     <Navbar.Brand href='/'>Navbar</Navbar.Brand>
-                    <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={ this.toggleCollapse}/>
+                    <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={this.toggleCollapse} />
                     <Navbar.Collapse id='basic-navbar-nav' >
                         <Nav className='ml-auto'>
                             <Link to='/psychologists'>
@@ -60,9 +60,15 @@ export default class Navigation extends Component {
                                         <Link to='/'>
                                             <Nav.Link as='div' onClick={this.logOut}>Cerrar sesión</Nav.Link>
                                         </Link>
-                                        <Link to='/profile'>
-                                            <Nav.Link as='div'>Hola, {this.props.loggedInUser.name}</Nav.Link>
-                                        </Link>
+                                        <NavDropdown title={`Hola, ${this.props.loggedInUser.name}`} id="basic-nav-dropdown">
+                                            <Link to='/profile/appointments'>
+                                                <NavDropdown.Item as='div'>Mis citas</NavDropdown.Item>
+                                            </Link>
+                                            <Link to='/profile/info'>
+                                                <NavDropdown.Item as='div'>Mi info</NavDropdown.Item>
+                                            </Link>
+                                            
+                                        </NavDropdown>
                                     </>
                                     :
                                     <>

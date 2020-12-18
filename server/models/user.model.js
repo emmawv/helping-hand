@@ -31,12 +31,6 @@ const patientSchema = new Schema({
         type: String,
         default: 'https://lh3.googleusercontent.com/proxy/GKXepNRFEUqVzaTydSOlt5WIPPTJ11I2Wp9YzM43Lm6HHs9p9-v0mr_4aHinV7fnSOi-zadsRVlID0i3wwUEVh3KS59a78r7Y0mphv1g0aMHBin70N2czIkHomKv1mlijFOTqT_U81o'
     },
-    favourites: [{
-        psychId: {
-            type: Schema.Types.ObjectId,
-            ref: 'Psych'
-        }
-    }],
     role: {
         type: String,
         enum: ['PATIENT'],
@@ -79,7 +73,7 @@ const psychSchema = new Schema({
         type: [Schema.Types.ObjectId],
         ref: 'Problem'
     }],
-    description: String,
+    shortBio: String,
     profileImg: {
         type: String,
         require: true
@@ -92,6 +86,8 @@ const psychSchema = new Schema({
         type: String,
         enum: ['remota', 'presencial']
     }],
+    price: Number,
+
     role: {
         type: String,
         enum: ['DOC'],

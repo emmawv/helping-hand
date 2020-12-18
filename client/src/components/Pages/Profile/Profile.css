@@ -46,6 +46,18 @@
     color: white
 }
 
+.profilepic-info{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.info-title{
+    text-align: center;
+    padding-top: 30px
+}
+
 @media all and (max-width: 575px) {
     .app-card img{
         height: 200px;

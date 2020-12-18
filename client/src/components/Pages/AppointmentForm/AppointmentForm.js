@@ -33,11 +33,13 @@ class AppointmentForm extends Component {
 
     filterTimes = () => {
         this.appointmentService
-            .getDocAppointments(this.state.pychId)
+            .getAppointments()
             .then(res => {
+                const docAppointments = res.data.filter(elm => elm.psychId._id === this.props.psych._id)
+
                 const bookedTimes = []
 
-                res.data.filter(elm => {
+                docAppointments.filter(elm => {
                     const date = new Date(elm.dateStart)
                     let month = date.getMonth() + 1
                     let dt = date.getDate()
@@ -59,8 +61,7 @@ class AppointmentForm extends Component {
                 return (availableTimes)
             })
             .then(availableTimes => this.setState({ availableTimes: [...availableTimes] }))
-            .then(() => console.log(this.state.availableTimes))
-            .catch(err => console.log(err))
+            .catch(err => new Error(err))
     }
 
     handleInputChange = e => this.setState({ [e.target.name]: e.target.value })
@@ -74,7 +75,7 @@ class AppointmentForm extends Component {
                 this.props.closeModal()
                 this.props.toggleButton()
             })
-            .catch(err => console.log(err))
+            .catch(err => new Error(err))
     }
 
 

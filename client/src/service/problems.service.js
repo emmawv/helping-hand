@@ -9,6 +9,5 @@ export default class AppointmentService {
         })
     }
 
-    getAppointments = () => this.apiHandler.get('/getAppointments')
-    makeNewAppointment = info => this.apiHandler.post('/newAppointment', info)
+    getProblems = () => this.apiHandler.get('/getProblems')
 }
