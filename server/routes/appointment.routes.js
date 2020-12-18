@@ -36,4 +36,11 @@ router.post('/newAppointment', (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 
+router.put('/delete-appointment', (req, res) => {
+    Appointment
+        .findByIdAndDelete(req.body._id)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
 module.exports = router

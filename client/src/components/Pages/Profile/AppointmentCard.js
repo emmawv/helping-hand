@@ -4,7 +4,7 @@ import 'moment/locale/es'
 
 import './Profile.css'
 
-const AppointmentCard = ({ userId, psychId, dateStart, dateEnd, message, meetType, loggedUser }) => {
+const AppointmentCard = ({ userId, psychId, dateStart, dateEnd, message, meetType, loggedUser, _id }) => {
 
     return (
         <>

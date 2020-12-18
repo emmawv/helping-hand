@@ -53,7 +53,7 @@ export default class App extends Component {
           <Route path='/signup' render={props => <SignUp storeUser={this.setTheUser} {...props} />} />
           <Route path='/psych-signup' render={props => <PsychSignUp storeUser={this.setTheUser} {...props} />} />
           <Route path='/login' render={props => <Login storeUser={this.setTheUser} {...props} />} />
-          <Route path='/profile/appointments' render={() => this.state.loggedInUser ? <AppointmentPage loggedUser={this.state.loggedInUser} /> : <Redirect to="/login" />} />
+          <Route path='/profile/appointments' render={props => this.state.loggedInUser ? <AppointmentPage loggedUser={this.state.loggedInUser} /> : <Redirect to="/login" />} />
           <Route path='/profile/info' render={props => this.state.loggedInUser ? <InfoPage loggedUser={this.state.loggedInUser} {...props} storeUser={this.setTheUser}/> : <Redirect to="/login" />} />
         </Switch>
       </>

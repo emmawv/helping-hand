@@ -77,22 +77,24 @@ class PsychDetails extends Component {
                                 <div className='details-img'>
                                     <img src={this.state.psych.profileImg} alt={this.state.psych.name} />
                                 </div>
-                                {this.props.loggedUser ?
-                                    <>
-                                        {!this.state.appointmentButtonInactive
-                                            ?
-                                            <Button onClick={() => this.handleAppointmentModal(true)} className='infobtn' block>Pedir cita</Button>
-                                            :
-                                            <Button onClick={() => this.handleAppointmentModal(true)} id='infobtn-off' disabled block>Cita pedida</Button>
-                                        }
+                                {this.props.loggedUser
+                                    ?
+                                    this.props.loggedUser.role === 'PATIENT'
+                                        ?
+                                        <>
+                                            {!this.state.appointmentButtonInactive
+                                                ?
+                                                <Button onClick={() => this.handleAppointmentModal(true)} className='infobtn' block>Pedir cita</Button>
+                                                :
+                                                <Button onClick={() => this.handleAppointmentModal(true)} id='infobtn-off' disabled block>Cita pedida</Button>
+                                            }
 
-                                        <Button onClick={() => this.handleContactModal(true)} className='contact-btn' block>Contactar</Button>
-                                    </>
+                                            <Button onClick={() => this.handleContactModal(true)} className='contact-btn' block>Contactar</Button>
+                                        </>
+                                        : null
                                     :
                                     <p className='login-msg'>Inicia sesion para poder contactar y pedir cita con especialistas</p>
-                                }
-
-
+                                    }
                             </Col>
                             <Col md={8} lg={9}>
                                 <Row>

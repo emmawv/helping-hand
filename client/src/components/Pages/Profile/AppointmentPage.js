@@ -8,8 +8,8 @@ import Loader from '../Loader/Loader'
 
 
 export default class AppointmentPage extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             user: undefined,
             appointments: undefined
