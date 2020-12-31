@@ -9,6 +9,6 @@ export default class PsychService {
         })
     }
 
-    getAllPsych = () => this.apiHandler.get('/')
-    getOnePsych = psychId => this.apiHandler.get(`/${psychId}`)
+    getAllPsych = () => this.apiHandler.get('/psych/')
+    getOnePsych = psychId => this.apiHandler.get(`/psych/${psychId}`)
 }
