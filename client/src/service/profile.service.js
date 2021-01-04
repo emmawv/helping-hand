@@ -4,12 +4,12 @@ export default class ProfileService {
 
     constructor() {
         this.apiHandler = axios.create({
-            baseURL: process.env.REACT_APP_API_URL,
+            baseURL: 'http://localhost:5000/api',
             withCredentials: true
         })
     }
 
     editPsych = info => this.apiHandler.put('/edit-psych', info)
     editPatient = info => this.apiHandler.put('/edit-patient', info)
-    deleteUser = () => this.apiHandler.delete('/delete-user')
+    deleteUser = userId => this.apiHandler.put(`/delete/${userId}`)
 }

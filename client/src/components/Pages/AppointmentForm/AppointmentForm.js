@@ -9,6 +9,7 @@ class AppointmentForm extends Component {
     constructor() {
         super()
         this.state = {
+            userId: '',
             psychId: '',
             time: '',
             date: '',
@@ -23,7 +24,8 @@ class AppointmentForm extends Component {
 
     componentDidMount = () => {
         this.setState({
-            psychId: this.props.psych._id
+            psychId: this.props.psych._id,
+            userId: this.props.loggedUser._id
         }, () => this.setGeocode())
     }
 

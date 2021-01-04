@@ -142,7 +142,7 @@ class PsychDetails extends Component {
                 }
                 <Modal show={this.state.showAppointmentModal} onHide={() => this.handleAppointmentModal(false)}>
                     <Modal.Body>
-                        <AppointmentForm closeModal={() => this.handleAppointmentModal(false)} toggleButton={() => this.toggleButton()} psych={this.state.psych} loggedUser={this.props.loggedUSer} />
+                        <AppointmentForm closeModal={() => this.handleAppointmentModal(false)} toggleButton={() => this.toggleButton()} psych={this.state.psych} loggedUser={this.props.loggedUser} />
                     </Modal.Body>
                 </Modal>
                 <Modal show={this.state.showContactModal} onHide={() => this.handleContactModal(false)}>

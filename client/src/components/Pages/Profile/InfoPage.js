@@ -19,7 +19,7 @@ class InfoPage extends Component {
 
     onDeleteClick = () => {
         this.profileService
-            .deleteUser()
+            .deleteUser(this.state.user._id)
             .then(() => {
                 this.props.history.push('/')
                 this.props.storeUser(undefined)
