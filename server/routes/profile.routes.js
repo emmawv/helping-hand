@@ -21,13 +21,13 @@ router.put('/edit-patient', (req, res) => {
         .catch(err => res.status(500).json(err))
 })
 
-router.delete('/delete', (req, res) => {
+router.put('/delete/:id', (req, res) => {
 
     Appointment
-        .deleteMany({ userId: req.user._id })
-        .then(() => {
-            console.log(req.user.id)
-            return User.findByIdAndDelete(req.user._id)
+        .deleteMany({ userId: req.params.id })
+        .then(response => {
+            console.log(response)
+            return User.findByIdAndDelete(req.params.id)
         })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))

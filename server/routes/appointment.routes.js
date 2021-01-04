@@ -2,10 +2,6 @@ const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
 
-const ObjectId = require('mongoose').Types.ObjectId
-
-const ISODate = require('mongoose').Types.Date
-
 const Appointment = require('../models/appointments.model')
 
 
@@ -22,8 +18,7 @@ router.get('/getAppointments', (req, res) => {
 
 router.post('/newAppointment', (req, res) => {
 
-    const userId = req.user.id
-    const { psychId, message, time, address } = req.body
+    const { userId, psychId, message, time, address } = req.body
     const dateStart = new Date(`${req.body.date}T${req.body.time}Z`)
     const dateEnd = new Date(`${req.body.date}T${req.body.time}-01:00`)
     let meetType
