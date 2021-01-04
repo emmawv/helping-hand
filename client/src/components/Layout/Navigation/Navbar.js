@@ -46,12 +46,12 @@ export default class Navigation extends Component {
         return (
             <div id='navbar'>
                 <Navbar variant={this.state.variant} style={{ background: `${this.state.background}` }} fixed='top' expand='md'>
-                    <Navbar.Brand href='/'>Home</Navbar.Brand>
+                    <Navbar.Brand href='/'>Inicio</Navbar.Brand>
                     <Navbar.Toggle aria-controls='basic-navbar-nav' onClick={this.toggleCollapse} />
                     <Navbar.Collapse id='basic-navbar-nav' >
                         <Nav className='ml-auto'>
                             <Link to='/psychologists'>
-                                <Nav.Link as='div'>See all psychologists</Nav.Link>
+                                <Nav.Link as='div'>Ver psicologos</Nav.Link>
                             </Link>
                             {
                                 this.props.loggedInUser
@@ -65,7 +65,7 @@ export default class Navigation extends Component {
                                                 <NavDropdown.Item as='div'>Mis citas</NavDropdown.Item>
                                             </Link>
                                             <Link to='/profile/info'>
-                                                <NavDropdown.Item as='div'>Mi info</NavDropdown.Item>
+                                                <NavDropdown.Item as='div'>Mi perfil</NavDropdown.Item>
                                             </Link>
                                             
                                         </NavDropdown>
