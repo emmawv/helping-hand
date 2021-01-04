@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Accordion, Card, Button } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 import AppointmentService from '../../../service/appointments.service'
 import AppointmentCard from './AppointmentCard'

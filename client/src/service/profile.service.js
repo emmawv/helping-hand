@@ -11,5 +11,5 @@ export default class ProfileService {
 
     editPsych = info => this.apiHandler.put('/edit-psych', info)
     editPatient = info => this.apiHandler.put('/edit-patient', info)
-    deleteUser = () => this.apiHandler.put(`/delete`)
+    deleteUser = () => this.apiHandler.delete('/delete-user')
 }

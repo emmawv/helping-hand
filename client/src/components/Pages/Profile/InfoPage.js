@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import ProfileService from '../../../service/profile.service'
 import AuthService from '../../../service/auth.service'
 
+import './Profile.css'
+
 class InfoPage extends Component {
     constructor() {
         super()
@@ -17,7 +19,7 @@ class InfoPage extends Component {
 
     onDeleteClick = () => {
         this.profileService
-            .deleteUser(this.state.user._id)
+            .deleteUser()
             .then(() => {
                 this.props.history.push('/')
                 this.props.storeUser(undefined)
@@ -36,10 +38,10 @@ class InfoPage extends Component {
                         {loggedUser.role === 'DOC'
                             ?
                             <>
-                                <Col xs={4}>
-                                    <img className='profilepic-info' src={loggedUser.profileImg} alt='profile pic' />
+                                <Col xs={{ span: 10, offset: 1 }} lg={3}>
+                                    <img className='profilepic-info' src={loggedUser.profileImg} style={{marginBottom: '20px'}} alt='profile pic' />
                                 </Col>
-                                <Col xs={4}>
+                                <Col xs={{ span: 10, offset: 1 }} lg={3}>
                                     <p><strong>Nombre:</strong> {loggedUser.name}</p>
                                     <p><strong>Apellido:</strong> {loggedUser.surname}</p>
                                     <p><strong>Email:</strong> {loggedUser.email}</p>
@@ -47,7 +49,7 @@ class InfoPage extends Component {
                                     <p><strong>Sobre ti:</strong> {loggedUser.shortBio}</p>
                                     <p><strong>Tarifa:</strong> {loggedUser.price} €/hora</p>
                                 </Col>
-                                <Col xs={4}>
+                                <Col xs={{ span: 10, offset: 1 }} lg={3}>
                                     <p><strong>Tipo de terapia:</strong> {loggedUser.meetType.length === 1 ? loggedUser.meetType[0] : loggedUser.meetType.map(elm => `${elm} | `)}</p>
                                     {loggedUser.practice.name ?
                                         <>
@@ -62,27 +64,27 @@ class InfoPage extends Component {
                                     <ul>{loggedUser.agesTreated.map(elm => <li>{elm}</li>)}
                                     </ul>
                                 </Col>
-                                <Col xs={12}>
-                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 0 0' }}> Eliminar cuenta</Button>
+                                <Col xs={{ span: 9, offset: 1 }} lg={4}>
+                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 50px 0' }} onClick={this.onDeleteClick}> Eliminar cuenta</Button>
                                 </Col>
 
                             </>
                             :
                             <>
-                                <Col xs={{ span: 3, offset: 3 }}>
+                                <Col xs={{ span: 10, offset: 1 }} sm={{ span: 3, offset: 3 }}>
                                     <img className='profilepic-info' src={loggedUser.profileImg} alt='profile pic' />
                                 </Col>
-                                <Col xs={3}>
+                                <Col xs={{ span: 10, offset: 1 }} sm={3}>
                                     <p><strong>Nombre:</strong> {loggedUser.name}</p>
                                     <p><strong>Apellido:</strong> {loggedUser.surname}</p>
                                     <p><strong>Email:</strong> {loggedUser.email}</p>
                                 </Col>
-                                <Col xs={{ span: 9, offset: 3 }}>
-                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 0 0' }}> Eliminar cuenta</Button>
+                                <Col xs={{ span: 9, offset: 1 }} sm={{ span: 4, offset: 3 }}>
+                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 50px 0' }} onClick={this.onDeleteClick}> Eliminar cuenta</Button>
                                 </Col>
                             </>
-                        }  
-                        
+                        }
+
 
                     </Row>
                 </Container>

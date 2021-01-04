@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import AppointmentService from './../../../service/appointments.service'
-import Moment from 'react-moment'
 import Geocode from "react-geocode"
 
 import { Form, Button } from 'react-bootstrap'

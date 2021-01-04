@@ -19,7 +19,7 @@ class Schedule extends Component {
     componentDidMount = () => {
         const schedulerDataArr = []
 
-        this.props.appointments.map(elm => {
+        this.props.appointments.forEach(elm => {
             if (this.props.loggedUser.role === 'PATIENT') {
                 const data = { startDate: elm.dateStart, endDate: elm.dateEnd, title: `${elm.psychId.name} ${elm.psychId.surname}` }
                 schedulerDataArr.push(data)
