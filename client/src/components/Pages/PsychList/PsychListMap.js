@@ -3,7 +3,7 @@ import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react'
 
 const mapStyles = {
     width: '100%',
-    height: '350px'
+    height: '100%'
 }
 
 const API_KEY = process.env.REACT_APP_API_KEY
@@ -14,13 +14,9 @@ export class MapContainer extends Component {
         this.state = {
             showingInfoWindow: false,  // Hides or shows the InfoWindow
             activeMarker: {},          // Shows the active marker upon click
-            selectedPlace: {},         // Shows the InfoWindow to the selected place upon a marker
-            psych: this.props.psych
-        };
+            selectedPlace: {}         // Shows the InfoWindow to the selected place upon a marker
+        }
     }
-
-    //componentDidMount = () => this.setState({psych: this.props.psych})
-
 
     onMarkerClick = (props, marker, e) => {
         this.setState({
@@ -40,7 +36,6 @@ export class MapContainer extends Component {
     }
 
     render() {
-
         return (
             <>
                 {this.props.psych ?
@@ -50,7 +45,7 @@ export class MapContainer extends Component {
                         style={mapStyles}
                         initialCenter={{ lat: 40.364728375, lng: -3.4563729 }}
                     >
-                        {this.state.psych ? this.state.psych.map(elm => {
+                        {this.props.psych.map(elm => {
                             return (
                                 <Marker
                                     position={{ lat: elm.practice.location.coordinates[0], lng: elm.practice.location.coordinates[1] }}
@@ -61,7 +56,7 @@ export class MapContainer extends Component {
                                     id={elm._id}
                                 />
                             )
-                        }) : null}
+                        })}
 
                         <InfoWindow
                             marker={this.state.activeMarker}

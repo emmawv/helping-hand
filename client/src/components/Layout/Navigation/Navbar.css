@@ -1,3 +1,7 @@
 .navbar{
     width: 100vw;
 }
+
+.navbar a:hover{
+    text-decoration: none;
+}

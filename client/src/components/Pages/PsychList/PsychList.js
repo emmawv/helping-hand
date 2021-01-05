@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col, Accordion, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
 import PsychService from './../../../service/psychologists.service'
 import PsychCard from './PsychCard'
@@ -13,7 +13,8 @@ class PsychList extends Component {
         super()
         this.state = {
             psych: [],
-            showModal: false
+            showModal: false,
+            showMap: false
         }
         this.psychService = new PsychService()
     }
@@ -33,6 +34,8 @@ class PsychList extends Component {
 
     toggleButton = () => this.setState({ appointmentInactive: true })
 
+    toggleMapView = () => !this.state.showMap ? this.setState({ showMap: true }) : this.setState({ showMap: false })
+
     render() {
         return (
             <>
@@ -40,21 +43,12 @@ class PsychList extends Component {
                     <Row>
                         <Col xs={12}>
                             <h1 className='title'>Listado de psicologos</h1>
+                            <Button className='map-button' variant='outline-info' onClick={this.toggleMapView}>Ver mapa</Button>
                             <hr />
-                            <Accordion>
-                                <Card>
-                                    <Card.Header>
-                                        <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                            Mostrar el mapa
-                                </Accordion.Toggle>
-                                    </Card.Header>
-                                    <Accordion.Collapse eventKey="0">
-                                        <Card.Body style={{ height: '350px' }}>
-                                            <MapContainer className='list-map' psych={this.state.psych} />
-                                        </Card.Body>
-                                    </Accordion.Collapse>
-                                </Card>
-                            </Accordion>
+                            <section className='map-container' style={{ height: this.state.showMap ? '250px' : '0'}}>
+                                <MapContainer className='list-map' psych={this.state.psych} />
+                            </section>
+
                         </Col>
                         <Col xs={12}>
                             <Row>

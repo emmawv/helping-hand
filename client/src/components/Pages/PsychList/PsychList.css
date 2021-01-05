@@ -6,7 +6,7 @@
 }
 
 .title{
-    margin: 50px 0 25px;
+    margin: 50px 0 15px;
     text-align: center;   
 }
 
@@ -41,7 +41,6 @@
 
 .marker{
     display: flex;
-
 }
 
 .marker img{
@@ -51,6 +50,22 @@
  object-fit: cover;
 }
 
-.card-body{
-    padding: 0
+.map-container{
+    height: 200px;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.map-button{
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #a5d499;
+    color: #a5d499
+}
+
+.map-button:hover{
+    background-color: #a5d499;
+    border: 1px solid #a5d499;
+    color: white
 }
