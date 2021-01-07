@@ -32,8 +32,9 @@
     padding: 10px 20px;
     width: 90%;
     text-align: center;
-    color: white;
+    color: #2A558C;
     text-decoration: none;
+    background-color: rgb(255, 255, 255, 0.4);
 
     transition: all 0.5s;
 }
