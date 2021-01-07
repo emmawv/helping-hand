@@ -14,27 +14,27 @@ const HomePage = () => {
                     <source src='https://res.cloudinary.com/djqsmqs26/video/upload/v1607365473/helping-hand/Pexels_Videos_1723017_1_rtp1hb.mp4' type='video/mp4' />
                 </video>
                 <div>
-                    <h1>Bienvenido a helping_hand</h1>
-                    <p>A veces la vida se complica, pero pedir ayuda puede ser facil. Queremos ayudarte a encontrar la persona que pueda acompanarte.</p>
-                    <Link to='/psychologists' className='button'>Start searching for a professional</Link>
+                    <h1>Bienvenido a Helping Hand</h1>
+                    <p>A veces la vida se complica, pero pedir ayuda puede ser fácil. Queremos ayudarte a encontrar la persona que pueda acompañarte.</p>
+                    <Link to='/psychologists' className='button'>Busca un profesional</Link>
                 </div>
             </section>
             <Row className='info'>
-                <Col xs={12} md={4}>
-                    <img src={search} alt='magnifying glass icon' className='icon'/>
-                    <h3>Busca un profesional</h3>
-                    <p>Busca el profesional que mas se adapte a tus necesidades. </p>
-                </Col>
-                <Col xs={12} md={4}>
-                    <img src={schedule} alt='schedule icon' className='icon'/>
-                    <h3>Contacta</h3>
-                    <p>Ponte en contacto en el profesional que elijas o pide cita a traves de la pagina.</p>
-                </Col>
-                <Col xs={12} md={4}>
-                    <img src={handshake} alt='handshake icon' className='icon'/>
-                    <h3>Empieza el proceso</h3>
-                    <p>Comienza a recibir la ayuda que mereces.</p>
-                </Col>
+                    <Col xs={12} md={4}>
+                        <img src={search} alt='magnifying glass icon' className='icon' />
+                        <h3>Busca un profesional</h3>
+                        <p>Busca el profesional que mas se adapte a tus necesidades. </p>
+                    </Col>
+                    <Col xs={12} md={4}>
+                        <img src={schedule} alt='schedule icon' className='icon' />
+                        <h3>Contacta</h3>
+                    <p>Ponte en contacto en el profesional que elijas o pide cita a traves de la página.</p>
+                    </Col>
+                    <Col xs={12} md={4}>
+                        <img src={handshake} alt='handshake icon' className='icon' />
+                        <h3>Empieza el proceso</h3>
+                        <p>Comienza a recibir la ayuda que mereces.</p>
+                    </Col>
             </Row>
         </>
     )

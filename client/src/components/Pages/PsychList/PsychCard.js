@@ -10,11 +10,11 @@ const PsychCard = ({ profileImg, _id, meetType, name, surname, shortBio, problem
             <Col xs={12} md={3} lg={2}>
                 <img src={profileImg} alt='Profile' />
                 
-                <Link to={`/psychologists/${_id}`} className='infobtn'>Ver mas</Link>
+                <Link to={`/psychologists/${_id}`} className='infobtn'>Ver más</Link>
 
                 {!meetType.includes('presencial')
                     ?
-                    <p className='alert'><small>Este psicologo solo realiza consultas online</small></p>
+                    <p className='alert'><small>Este psicólogo solo realiza consultas online.</small></p>
                     : null
                 }
                 

@@ -43,31 +43,31 @@ class Signup extends Component {
                 <Row className='signup-form'>
                     <Col xs={{ span: 10, offset: 1 }} md={5}>
                         <h1>Registro de usuario</h1>
-                        <Link to='/psych-signup'>Eres un psicologo?</Link>
+                        <Link to='/psych-signup'>Eres un psicólogo?</Link>
                         <hr />
                         <Form onSubmit={this.handleSubmit}>
                             <Row>
                                 <Col xs={6}>
                                     <Form.Group controlId='name'>
                                         <Form.Label>Nombre</Form.Label>
-                                        <Form.Control type='text' name='name' value={this.state.name} onChange={this.handleInputChange} />
+                                        <Form.Control type='text' name='name' value={this.state.name} onChange={this.handleInputChange} required/>
                                     </Form.Group>
                                 </Col>
                                 <Col xs={6}>
                                     <Form.Group controlId='surname'>
                                         <Form.Label>Apellido</Form.Label>
-                                        <Form.Control type='text' name='surname' value={this.state.surname} onChange={this.handleInputChange} />
+                                        <Form.Control type='text' name='surname' value={this.state.surname} onChange={this.handleInputChange} required/>
                                     </Form.Group>
                                 </Col>
                             </Row>
                             <Form.Group controlId='email'>
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type='text' name='email' value={this.state.email} onChange={this.handleInputChange} />
+                                <Form.Control type='text' name='email' value={this.state.email} onChange={this.handleInputChange} required/>
                             </Form.Group>
                             <Form.Group controlId='password'>
                                 <Form.Label>Contraseña</Form.Label>
-                                <Form.Control type='password' name='password' value={this.state.password} onChange={this.handleInputChange} />
-                                <small>La contraseña debe incluir al menos una mayuscula, un numero y un caracter especial</small>
+                                <Form.Control type='password' name='password' value={this.state.password} onChange={this.handleInputChange} required/>
+                                <small>La contraseña deber tener una longitud mínima de 6 e incluir al menos una mayúscula, un número y un carácter especial.</small>
                             </Form.Group>
                             <Button className='login-submit' type='submit'>Registrarme</Button>
                         </Form>

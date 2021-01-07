@@ -64,12 +64,12 @@ class PsychDetails extends Component {
                     <>
                         <div className='header'>
                             <h1>{this.state.psych.name} {this.state.psych.surname}</h1>
-                            <small>Psicologo Especializado</small>
+                            <small>Psicólogo Especializado</small>
                         </div>
                         < hr />
                         {!this.state.psych.meetType.includes('presencial')
                             ?
-                            <p className='alert'><small>Este psicologo solo realiza consultas online</small></p>
+                            <p className='alert'><small>Este psicólogo solo realiza consultas online.</small></p>
                             : null
                         }
                         <Row>
@@ -93,7 +93,7 @@ class PsychDetails extends Component {
                                         </>
                                         : null
                                     :
-                                    <p className='login-msg'>Inicia sesion para poder contactar y pedir cita con especialistas</p>
+                                    <p className='login-msg'>Inicia sesión para poder contactar y pedir cita con especialistas.</p>
                                     }
                             </Col>
                             <Col md={8} lg={9}>

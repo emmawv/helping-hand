@@ -4,13 +4,13 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    height: 500px
+    min-height: 75vh
 }
 
 .videoTag {
   object-fit: cover;
-  width: 100vw;
-  height: 500px;
+  width: 100%;
+  min-height: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -21,7 +21,7 @@
     text-align: center;
     margin: 0 auto;
     width: 60%;
-    padding: 10rem 0;
+    padding: 175px 0;
 }
 
 .hero .button{
@@ -44,9 +44,10 @@
 }
 
 .info{
-    padding: 2rem 0;
     background-color: #EAF3FA;
-    text-align: center
+    text-align: center;
+    min-height: 25vh;
+    padding: 4vh 0 2vh;
 }
 
 .info p{
@@ -57,14 +58,71 @@
     width: 45px;
     margin-bottom: 10px
 }
+@media all and (min-width: 610px){
+    .hero .button{
+        width: 70%
+    }
+}
+
+@media all and (min-width: 768px){
+    .hero .button{
+        width: 60%
+    }
+}
+
+@media all and (min-width: 840px){
+    .hero .button{
+        width: 50%
+    }
+}
+
+@media all and (max-width: 918px){
+    .hero>div{
+        padding: 150px 0
+    }
+}
 
 @media all and (max-width: 768px){
-    .hero>div{
-        padding: 8rem 0
-    }
-
     .icon{
         margin-top: 20px
     }
+
+    .info p{
+        width: 80%;
+        margin: 0 auto
+    }
 }
+
+@media all and (max-width: 565px){
+    .hero .button, .hero p{
+        width: 100%
+    }
+}
+
+@media all and (max-width: 470px){
+    .hero h1{
+        font-size: 2em;
+    }
+
+    .info h3{
+        font-size: 1.6em
+    }
+}
+
+@media all and (max-width: 458px){
+    .hero>div{
+        padding: 100px 0
+    }
+}
+
+@media all and (max-width: 375px){
+    .hero h1{
+        font-size: 1.8em;
+    }
+
+    .info h3{
+        font-size: 1.3em
+    }
+}
+
 

@@ -7,9 +7,9 @@
     border-right: 5px solid rgb(214, 214, 214);
     border-bottom: 5px solid rgb(214, 214, 214);
     border-radius: 50%;
+
     animation: spin-me .4s infinite linear;
 }
-
 
 @keyframes spin-me {
     from {

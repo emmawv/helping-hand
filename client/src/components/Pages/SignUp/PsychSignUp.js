@@ -141,7 +141,7 @@ class PsychSignup extends Component {
         return (
             <Container className='signup-form'>
 
-                <h1 className='psych-title'>Registro de psicologo</h1>
+                <h1 className='psych-title'>Registro de psicólogo</h1>
                 <hr />
 
                 <Form onSubmit={this.handleSubmit}>
@@ -151,35 +151,36 @@ class PsychSignup extends Component {
                                 <Col xs={6}>
                                     <Form.Group controlId='name'>
                                         <Form.Label>Nombre</Form.Label>
-                                        <Form.Control type='text' name='name' value={this.state.name} onChange={this.handleInputChange} />
+                                        <Form.Control type='text' name='name' value={this.state.name} onChange={this.handleInputChange} required/>
                                     </Form.Group>
                                 </Col>
                                 <Col xs={6}>
                                     <Form.Group controlId='surname'>
                                         <Form.Label>Apellido</Form.Label>
-                                        <Form.Control type='text' name='surname' value={this.state.surname} onChange={this.handleInputChange} />
+                                        <Form.Control type='text' name='surname' value={this.state.surname} onChange={this.handleInputChange} required/>
                                     </Form.Group>
                                 </Col>
                             </Row>
                             <Form.Group controlId='email'>
                                 <Form.Label>Email</Form.Label>
-                                <Form.Control type='text' name='email' value={this.state.email} onChange={this.handleInputChange} />
+                                <Form.Control type='text' name='email' value={this.state.email} onChange={this.handleInputChange} required/>
                             </Form.Group>
                             <Form.Group controlId='telephone'>
-                                <Form.Label>Telephone</Form.Label>
-                                <Form.Control type='text' name='telephone' value={this.state.telephone} onChange={this.handleInputChange} />
+                                <Form.Label>Teléfono</Form.Label>
+                                <Form.Control type='text' name='telephone' value={this.state.telephone} onChange={this.handleInputChange} required/>
+                                <small>Escribe tu número de teléfono sin prefijo.</small>
                             </Form.Group>
                             <Form.Group controlId='password'>
                                 <Form.Label>Contraseña</Form.Label>
-                                <Form.Control type='password' name='password' value={this.state.password} onChange={this.handleInputChange} />
-                                <small>La contraseña debe incluir al menos una mayuscula, un numero y un caracter especial</small>
+                                <Form.Control type='password' name='password' value={this.state.password} onChange={this.handleInputChange} required/>
+                                <small>La contraseña deber tener una longitud mínima de 6 e incluir al menos una mayúscula, un número y un carácter especial.</small>
                             </Form.Group>
                             <Form.Group controlId='profileImg'>
                                 <Form.Label>Imagen de perfil</Form.Label>
-                                <Form.Control type='text' name='profileImg' value={this.state.profileImg} onChange={this.handleInputChange} placeholder='Direccion URL de la imagen' />
+                                <Form.Control type='text' name='profileImg' value={this.state.profileImg} onChange={this.handleInputChange} placeholder='Direccion URL de la imagen' required/>
                             </Form.Group>
                             <Form.Group controlId='shortBio'>
-                                <Form.Label>Cuentanos un poco sobre ti</Form.Label>
+                                <Form.Label>Cuéntanos un poco sobre ti</Form.Label>
                                 <Form.Control as='textarea' name='shortBio' value={this.state.shortBio} onChange={this.handleInputChange} />
                             </Form.Group>
                         </Col>
@@ -194,7 +195,7 @@ class PsychSignup extends Component {
                             {this.state.meetType.includes('presencial')
                                 ?
                                 <Form.Group controlId='practiceInfo'>
-                                    <Form.Label>Informacion sobre tu consulta</Form.Label><br />
+                                    <Form.Label>Información sobre tu consulta</Form.Label><br />
                                     <Form.Label>Nombre</Form.Label>
                                     <Form.Control value={this.state.practiceName} type='text' name='practiceName' onChange={this.handleInputChange} />
                                     <Form.Label style={{ marginTop: '15px' }}>Ubicacion</Form.Label>
@@ -212,7 +213,7 @@ class PsychSignup extends Component {
                                 : null}
                             <Form.Group controlId='price'>
                                 <Form.Label>Tarifa/hora:</Form.Label>
-                                <Form.Control type='number' name='price' value={this.state.price} onChange={this.handleInputChange} min={0} step={5}/>
+                                <Form.Control type='number' name='price' value={this.state.price} onChange={this.handleInputChange} min={0} step={5} required/>
                             </Form.Group>
                             <Form.Group controlId='timetable'>
                                 <Form.Label>Horario</Form.Label><br />
@@ -228,12 +229,13 @@ class PsychSignup extends Component {
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Edades tratadas</Form.Label><br />
-                                <small>Elige al menos un rango de edad</small><br />
+                                <small>Añade al menos un rango de edad.</small><br />
                                 {this.createUIAges()}
                                 <Button style={{ marginTop: '10px' }} type='button' onClick={this.addClickAges.bind(this)} variant='outline-info'>Añadir</Button>
                             </Form.Group>
                             <Form.Group>
                                 <Form.Label>Problemas y trastornos tratados</Form.Label><br />
+                                <small>Añade al menos un trastorno o problema.</small><br />
                                 {this.createUIProblems()}
                                 <Button style={{ marginTop: '10px' }} type='button' onClick={this.addClickProblems.bind(this)} variant='outline-info'>Añadir</Button>
                             </Form.Group>

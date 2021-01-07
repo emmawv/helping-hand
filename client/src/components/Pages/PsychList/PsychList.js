@@ -42,10 +42,10 @@ class PsychList extends Component {
                 <Container className='psych-page'>
                     <Row>
                         <Col xs={12}>
-                            <h1 className='title'>Listado de psicologos</h1>
+                            <h1 className='title'>Listado de psic ólogos</h1>
                             <Button className='map-button' variant='outline-info' onClick={this.toggleMapView}>Ver mapa</Button>
                             <hr />
-                            <section className='map-container' style={{ height: this.state.showMap ? '250px' : '0'}}>
+                            <section className='map-container' style={{ height: this.state.showMap ? '250px' : '0' }}>
                                 <MapContainer className='list-map' psych={this.state.psych} />
                             </section>
 
@@ -63,7 +63,9 @@ class PsychList extends Component {
                                                 <hr />
                                             </>
                                         )
-                                    }) : <Loader />
+                                    })
+                                        :
+                                        <Loader />
                                 }
                             </Row>
                         </Col>
