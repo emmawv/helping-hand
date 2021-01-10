@@ -42,7 +42,7 @@ class PsychList extends Component {
                 <Container className='psych-page'>
                     <Row>
                         <Col xs={12}>
-                            <h1 className='title'>Listado de psic ólogos</h1>
+                            <h1 className='title'>Listado de psicólogos</h1>
                             <Button className='map-button' variant='outline-info' onClick={this.toggleMapView}>Ver mapa</Button>
                             <hr />
                             <section className='map-container' style={{ height: this.state.showMap ? '250px' : '0' }}>
