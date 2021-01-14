@@ -5,3 +5,11 @@
 .navbar a:hover{
     text-decoration: none;
 }
+
+.nav-photo{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 5px
+}

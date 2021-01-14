@@ -6,7 +6,7 @@ import Geocode from "react-geocode"
 import PsychService from '../../../service/psychologists.service'
 import MapContainer from './DetailsMap'
 import AppointmentForm from '../AppointmentForm/AppointmentForm'
-import Loader from '../Loader/Loader'
+import Loader from '../../Shared/Loader/Loader'
 import './PsychDetails.css'
 
 class PsychDetails extends Component {

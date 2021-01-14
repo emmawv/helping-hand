@@ -4,7 +4,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import PsychService from './../../../service/psychologists.service'
 import PsychCard from './PsychCard'
 import MapContainer from './PsychListMap'
-import Loader from '../Loader/Loader'
+import Loader from '../../Shared/Loader/Loader'
 import './PsychList.css'
 
 class PsychList extends Component {

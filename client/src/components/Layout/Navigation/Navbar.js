@@ -60,14 +60,19 @@ export default class Navigation extends Component {
                                         <Link to='/'>
                                             <Nav.Link as='div' onClick={this.logOut}>Cerrar sesión</Nav.Link>
                                         </Link>
-                                        <NavDropdown title={`Hola, ${this.props.loggedInUser.name}`} id="basic-nav-dropdown">
+                                        <NavDropdown
+                                            title={
+                                                <span><img className='nav-photo' src={this.props.loggedInUser.profileImg} alt='foto perfil' />Hola, {this.props.loggedInUser.name}</span>
+                                            }
+                                            id="basic-nav-dropdown"
+                                        >
                                             <Link to='/profile/appointments'>
                                                 <NavDropdown.Item as='div'>Mis citas</NavDropdown.Item>
                                             </Link>
                                             <Link to='/profile/info'>
                                                 <NavDropdown.Item as='div'>Mi perfil</NavDropdown.Item>
                                             </Link>
-                                            
+
                                         </NavDropdown>
                                     </>
                                     :

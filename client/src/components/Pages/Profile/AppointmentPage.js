@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap'
 import AppointmentService from '../../../service/appointments.service'
 import AppointmentCard from './AppointmentCard'
 import Schedule from './Schedule'
-import Loader from '../Loader/Loader'
+import Loader from '../../Shared/Loader/Loader'
 
 
 export default class AppointmentPage extends Component {
@@ -42,7 +42,6 @@ export default class AppointmentPage extends Component {
                             <h2>Tus citas:</h2>
                             <hr/>
                             <Schedule appointments={this.state.appointments} loggedUser={this.state.user} />
-
                             {
                                 this.state.appointments.sort((a, b) => a.dateStart.localeCompare(b.dateStart)).map(elm =>
                                     <>

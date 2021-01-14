@@ -46,7 +46,7 @@ class AppointmentForm extends Component {
 
                 const bookedTimes = []
 
-                docAppointments.filter(elm => {
+                docAppointments.filter(elm => elm.status === 'active').filter(elm => {
                     const date = new Date(elm.dateStart)
                     let month = date.getMonth() + 1
                     let dt = date.getDate()
@@ -137,7 +137,7 @@ class AppointmentForm extends Component {
                                         <Form.Control as="textarea" rows={3} name="message" value={this.state.message} onChange={this.handleInputChange} placeholder={'Si hay algo que creas que necesite saber este especialista antes de acudir a tu cita hazselo saber...'} />
                                     </Form.Group>
                                 </>
-                                : <p>Please select a date to continue</p>
+                                : <p>Elige una fecha para continuar</p>
                             }
                             <Button type="submit" variant='info'>Pedir cita</Button>
                         </Form>

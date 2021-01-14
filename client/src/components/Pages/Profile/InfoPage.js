@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import React, { Component } from 'react'
 import ProfileService from '../../../service/profile.service'
 import AuthService from '../../../service/auth.service'
@@ -9,7 +9,8 @@ class InfoPage extends Component {
     constructor() {
         super()
         this.state = {
-            user: undefined
+            user: undefined,
+            showDeleteModal: false
         }
         this.profileService = new ProfileService()
         this.authService = new AuthService()
@@ -27,6 +28,8 @@ class InfoPage extends Component {
             .catch(err => new Error(err))
     }
 
+    handleDeleteModal = visible => this.setState({ showDeleteModal: visible })
+
     render() {
         const { loggedUser } = this.props
         return (
@@ -39,7 +42,7 @@ class InfoPage extends Component {
                             ?
                             <>
                                 <Col xs={{ span: 10, offset: 1 }} lg={3}>
-                                    <img className='profilepic-info' src={loggedUser.profileImg} style={{marginBottom: '20px'}} alt='profile pic' />
+                                    <img className='profilepic-info' src={loggedUser.profileImg} style={{ marginBottom: '20px' }} alt='profile pic' />
                                 </Col>
                                 <Col xs={{ span: 10, offset: 1 }} lg={3}>
                                     <p><strong>Nombre:</strong> {loggedUser.name}</p>
@@ -65,7 +68,7 @@ class InfoPage extends Component {
                                     </ul>
                                 </Col>
                                 <Col xs={{ span: 9, offset: 1 }} lg={4}>
-                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 50px 0' }} onClick={this.onDeleteClick}> Eliminar cuenta</Button>
+                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 50px 0' }} onClick={this.handleContactModal}> Eliminar cuenta</Button>
                                 </Col>
 
                             </>
@@ -80,13 +83,22 @@ class InfoPage extends Component {
                                     <p><strong>Email:</strong> {loggedUser.email}</p>
                                 </Col>
                                 <Col xs={{ span: 9, offset: 1 }} sm={{ span: 4, offset: 3 }}>
-                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 50px 0' }} onClick={this.onDeleteClick}> Eliminar cuenta</Button>
+                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 50px 0' }} onClick={() => this.handleDeleteModal(true)}> Eliminar cuenta</Button>
                                 </Col>
                             </>
                         }
 
 
                     </Row>
+                    <Modal show={this.state.showDeleteModal} onHide={() => this.handleDeleteModal(false)} centered='true' >
+                        <Modal.Body>
+                            <p>¿Estás seguro de que quieres eliminar tu cuenta?</p>
+                            <div style={{ textAlign: 'right' }}>
+                                <Button variant='outline-info' size='sm' style={{ marginRight: '10px' }} onClick={() => this.handleDeleteModal(false)}>Cancelar</Button>
+                                <Button variant='outline-danger' size='sm' onClick={this.onDeleteClick}>Eliminar</Button>
+                            </div>
+                        </Modal.Body>
+                    </Modal>
                 </Container>
             </>
         )
