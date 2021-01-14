@@ -8,7 +8,7 @@ const Appointment = require('../models/appointments.model')
 router.get('/getAppointments', (req, res) => {
 
     Appointment
-        .find()
+        .find({dateStart: {$gt: new Date()}})
         .populate('userId')
         .populate('psychId')
         .then(response => res.json(response))
@@ -26,7 +26,7 @@ router.post('/newAppointment', (req, res) => {
     req.body.meetType === '' ? meetType = 'remota' : meetType = req.body.meetType
 
     Appointment
-        .create({ userId, psychId, dateStart, dateEnd, message, time, meetType, address })
+        .create({ userId, psychId, dateStart, dateEnd, message, time, meetType, address})
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

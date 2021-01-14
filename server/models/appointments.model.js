@@ -18,7 +18,11 @@ const appointmentSchema = new Schema({
         type: String,
         default: 'remota'
     },
-    address: String
+    address: String,
+    status: {
+        type: String,
+        default: 'active'
+    }
 }, {
     timestamps: true
 })

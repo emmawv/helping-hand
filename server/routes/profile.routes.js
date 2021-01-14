@@ -24,11 +24,10 @@ router.put('/edit-patient', (req, res) => {
 router.put('/delete/:id', (req, res) => {
 
     Appointment
-        .deleteMany({ userId: req.params.id })
-        .then(response => {
-            console.log(response)
-            return User.findByIdAndDelete(req.params.id)
-        })
+        .updateMany({ userId: req.params.id }, { status: 'inactive' })
+        .then(() => Appointment.find({ status:'inactive' }))
+        .then(response => response.map(elm => User.findByIdAndUpdate(elm.psychId, { notifications: true }, { new: true })))
+        .then(() => User.findByIdAndUpdate(req.params.id, { accountStatus: 'inactive' }))
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

@@ -99,7 +99,7 @@ router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, theUser, failureDetails) => {
 
         if (err) {
-            res.status(500).json({ message: 'Error authenticating user' });
+            res.status(500).json({ message: 'Fallo autenticando al usuario' });
             return;
         }
 

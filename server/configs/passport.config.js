@@ -26,18 +26,19 @@ module.exports = app => {
     app.use(flash())
 
     passport.use(new LocalStrategy({ passReqToCallback: true }, (req, username, password, next) => {
+
         User
-            .findOne({ email: username })
+            .findOne({ accountStatus: 'active', email: username })
             .then(user => {
                 if (!user) {
                     return next(null, false, { message: "Email incorrecto" })
                 }
                 if (!bcrypt.compareSync(password, user.password)) {
-                    return next(null, false, { message: "Contrasena incorrecta" })
+                    return next(null, false, { message: "Contraseña incorrecta" })
                 }
                 return next(null, user)
             })
-            .catch(err => res.status(500).json(err))
+            .catch(err => res.status(500).json({message: 'Error en el inicio de sesion'}))
     }))
 
     app.use(passport.initialize())

@@ -11,7 +11,15 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    password: String
+    password: String,
+    accountStatus: {
+        type: String,
+        default: 'active'
+    },
+    notifications: {
+        type: Boolean,
+        default: false
+    }
 }, {
     timestamps: true
 })
