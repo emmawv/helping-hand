@@ -46,6 +46,7 @@ const patientSchema = new Schema({
     },
     accountStatus: {
         type: String,
+        enum: ['active', 'inactive'],
         default: 'active'
     },
     notifications: {
@@ -111,6 +112,7 @@ const psychSchema = new Schema({
     },
     accountStatus: {
         type: String,
+        enum: ['active', 'inactive'],
         default: 'active'
     },
     notifications: {

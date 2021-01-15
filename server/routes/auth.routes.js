@@ -37,7 +37,7 @@ router.post('/signup', (req, res) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
         User.Patient
-            .create({ email, password: hashPass, name, surname, accountStatus: 'active' })
+            .create({ email, password: hashPass, name, surname })
             .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Signup error' }) : res.status(200).json(newUser)))
             .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
         })
@@ -83,7 +83,7 @@ router.post('/psychsignup', (req, res) => {
             const hashPass = bcrypt.hashSync(password, salt)
             req.body.practiceName !== '' ?
                 User.Psych
-                    .create({ email, password: hashPass, name, surname, problems, meetType, agesTreated, telephone, timetable, profileImg, shortBio, price, practice, accountStatus: 'active' })
+                    .create({ email, password: hashPass, name, surname, problems, meetType, agesTreated, telephone, timetable, profileImg, shortBio, price, practice })
                     .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Signup error' }) : res.status(200).json(newUser)))
                     .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
                 :
