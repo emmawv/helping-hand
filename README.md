@@ -1,5 +1,6 @@
-## <a href='https://helping-hand-web.herokuapp.com/'>Helping Hand</a>
+## Helping Hand
 # Search for psychologists and set up appointments with them.
+Visit the <a href='https://helping-hand-web.herokuapp.com/'>web page</a>
 
 <img src='https://res.cloudinary.com/helping-hand-web/image/upload/v1610708028/Screenshot_2021-01-15_at_11.28.39_drhzvw.png' alt='Landing page' title='Landing page'/>
 
