@@ -43,6 +43,14 @@ const patientSchema = new Schema({
         type: String,
         enum: ['PATIENT'],
         default: 'PATIENT'
+    },
+    accountStatus: {
+        type: String,
+        default: 'active'
+    },
+    notifications: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true
@@ -100,6 +108,14 @@ const psychSchema = new Schema({
         type: String,
         enum: ['DOC'],
         default: 'DOC'
+    },
+    accountStatus: {
+        type: String,
+        default: 'active'
+    },
+    notifications: {
+        type: Boolean,
+        default: false
     }
 }, {
     timestamps: true
