@@ -1,5 +1,6 @@
 import { Col, Row } from 'react-bootstrap'
 import Moment from 'react-moment'
+import { Link } from 'react-router-dom'
 import 'moment/locale/es'
 
 import './Profile.css'
@@ -13,6 +14,7 @@ const AppointmentCard = ({ userId, psychId, dateStart, dateEnd, message, meetTyp
                 <Row className='app-card'>
                     <Col xs={12} sm={4}>
                         <img src={psychId.profileImg} alt='psychologist' />
+                        <Link to={`/psychologists/${psychId}`} className='infobtn'>Ver info</Link>
                     </Col>
                     <Col xs={12} sm={8}>
                         <Row>
@@ -34,7 +36,7 @@ const AppointmentCard = ({ userId, psychId, dateStart, dateEnd, message, meetTyp
                     <div className='inactive' style={{ display: status === 'inactive' ? 'block' : 'none' }}>
                         <p>Esta cita ha sido eliminada por el usuario.</p>
                     </div>
-                    <div style={{padding: '0.02px'}}>
+                    <div style={{ padding: '0.02px' }}>
                         <Row className='app-card'>
                             <Col xs={12} sm={4}>
                                 <img src={userId.profileImg} alt='user' />
