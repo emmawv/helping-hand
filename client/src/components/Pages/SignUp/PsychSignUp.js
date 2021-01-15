@@ -252,7 +252,7 @@ class PsychSignup extends Component {
                         <Button className='login-submit' type='submit'>Registrarme</Button>
                     </Form>
                 </Container>
-                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
+                <Alert show={this.state.showToast} handleToast={this.handleToast} alertText={this.state.alertText} />
             </>
         )
     }

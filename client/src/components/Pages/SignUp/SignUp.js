@@ -87,7 +87,7 @@ class Signup extends Component {
                         </Col>
                     </Row>
                 </Container>
-                <Alert show={this.state.showToast} handleToast={this.handleToast} toastText={this.state.toastText} />
+                <Alert show={this.state.showToast} handleToast={this.handleToast} alertText={this.state.alertText} />
             </>
         )
     }
