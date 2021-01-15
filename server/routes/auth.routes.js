@@ -26,7 +26,7 @@ router.post('/signup', (req, res) => {
     }
 
     User.Patient
-        .findOne({ email })
+        .findOne({ email, accountStatus: 'active'  })
         .then(foundUser => {
             if (foundUser) {
                 res.status(400).json({ message: 'El email ya esta registrado' })
@@ -37,7 +37,7 @@ router.post('/signup', (req, res) => {
             const hashPass = bcrypt.hashSync(password, salt)
 
         User.Patient
-            .create({ email, password: hashPass, name, surname })
+            .create({ email, password: hashPass, name, surname, accountStatus: 'active' })
             .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Signup error' }) : res.status(200).json(newUser)))
             .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
         })
@@ -56,7 +56,7 @@ router.post('/psychsignup', (req, res) => {
         }
     }
 
-    if (!email || !password) {
+    if (!email || !password || !name || !surname || !problems || !meetType || !agesTreated || !telephone || !profileImg ) {
         res.status(400).json({ message: 'Rellena todos los campos' })
         return
     }
@@ -72,7 +72,7 @@ router.post('/psychsignup', (req, res) => {
     }
 
     User.Psych
-        .findOne({ email })
+        .findOne({ email, accountStatus: 'active' })
         .then(foundUser => {
             if (foundUser) {
                 res.status(400).json({ message: 'El email ya esta registrado' })
@@ -83,7 +83,7 @@ router.post('/psychsignup', (req, res) => {
             const hashPass = bcrypt.hashSync(password, salt)
             req.body.practiceName !== '' ?
                 User.Psych
-                    .create({ email, password: hashPass, name, surname, problems, meetType, agesTreated, telephone, timetable, profileImg, shortBio, price, practice })
+                    .create({ email, password: hashPass, name, surname, problems, meetType, agesTreated, telephone, timetable, profileImg, shortBio, price, practice, accountStatus: 'active' })
                     .then(newUser => req.login(newUser, err => err ? res.status(500).json({ message: 'Signup error' }) : res.status(200).json(newUser)))
                     .catch(() => res.status(500).json({ message: 'Error saving user to DB' }))
                 :
