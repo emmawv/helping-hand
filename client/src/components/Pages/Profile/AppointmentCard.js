@@ -14,7 +14,7 @@ const AppointmentCard = ({ userId, psychId, dateStart, dateEnd, message, meetTyp
                 <Row className='app-card'>
                     <Col xs={12} sm={4}>
                         <img src={psychId.profileImg} alt='psychologist' />
-                        <Link to={`/psychologists/${psychId}`} className='infobtn'>Ver info</Link>
+                        <Link to={`/psychologists/${psychId._id}`} className='infobtn'>Ver info</Link>
                     </Col>
                     <Col xs={12} sm={8}>
                         <Row>
