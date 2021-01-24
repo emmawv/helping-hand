@@ -14,6 +14,7 @@ import AuthServices from '../service/auth.service'
 import PsychSignUp from './Pages/SignUp/PsychSignUp'
 import AppointmentPage from './Pages/Profile/AppointmentPage'
 import InfoPage from './Pages/Profile/InfoPage'
+import Footer from './Layout/Footer/Footer'
 
 
 
@@ -46,16 +47,29 @@ export default class App extends Component {
     return (
       <>
         <Navigation storeUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
+
+        <main>
         <Switch>
+          
           <Route path='/' exact render={() => <HomePage />} />
+
           <Route path='/psychologists' exact render={() => <PsychList loggedUser={this.state.loggedInUser} />} />
+
           <Route path='/psychologists/:psych_id' render={props => <PsychDetails {...props} loggedUser={this.state.loggedInUser} />} />
+
           <Route path='/signup' render={props => <SignUp storeUser={this.setTheUser} {...props} />} />
+
           <Route path='/psych-signup' render={props => <PsychSignUp storeUser={this.setTheUser} {...props} />} />
+
           <Route path='/login' render={props => <Login storeUser={this.setTheUser} {...props} />} />
+
           <Route path='/profile/appointments' render={props => this.state.loggedInUser ? <AppointmentPage loggedUser={this.state.loggedInUser} /> : <Redirect to="/login" />} />
-          <Route path='/profile/info' render={props => this.state.loggedInUser ? <InfoPage loggedUser={this.state.loggedInUser} {...props} storeUser={this.setTheUser}/> : <Redirect to="/login" />} />
-        </Switch>
+
+          <Route path='/profile/info' render={props => this.state.loggedInUser ? <InfoPage loggedUser={this.state.loggedInUser} {...props} storeUser={this.setTheUser} /> : <Redirect to="/login" />} />
+          
+          </Switch>
+        </main>
+        <Footer />
       </>
     )
   }

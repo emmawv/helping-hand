@@ -20,21 +20,21 @@ const HomePage = () => {
                 </div>
             </section>
             <Row className='info'>
-                    <Col xs={12} md={4}>
-                        <img src={search} alt='magnifying glass icon' className='icon' />
-                        <h3>Busca un profesional</h3>
-                        <p>Busca el profesional que mas se adapte a tus necesidades. </p>
-                    </Col>
-                    <Col xs={12} md={4}>
-                        <img src={schedule} alt='schedule icon' className='icon' />
-                        <h3>Contacta</h3>
+                <Col xs={12} md={4}>
+                    <img src={search} alt='magnifying glass icon' className='icon' />
+                    <h3>Busca un profesional</h3>
+                    <p>Busca el profesional que mas se adapte a tus necesidades. </p>
+                </Col>
+                <Col xs={12} md={4}>
+                    <img src={schedule} alt='schedule icon' className='icon' />
+                    <h3>Contacta</h3>
                     <p>Ponte en contacto en el profesional que elijas o pide cita a traves de la página.</p>
-                    </Col>
-                    <Col xs={12} md={4}>
-                        <img src={handshake} alt='handshake icon' className='icon' />
-                        <h3>Empieza el proceso</h3>
-                        <p>Comienza a recibir la ayuda que mereces.</p>
-                    </Col>
+                </Col>
+                <Col xs={12} md={4}>
+                    <img src={handshake} alt='handshake icon' className='icon' />
+                    <h3>Empieza el proceso</h3>
+                    <p>Comienza a recibir la ayuda que mereces.</p>
+                </Col>
             </Row>
         </>
     )

@@ -48,7 +48,9 @@
     background-color: #EAF3FA;
     text-align: center;
     min-height: 25vh;
-    padding: 4vh 0 2vh;
+    padding: 4vh 10px 2vh;
+    width: 100%;
+    margin: 0;
 }
 
 .info p{
@@ -59,6 +61,7 @@
     width: 45px;
     margin-bottom: 10px
 }
+
 @media all and (min-width: 610px){
     .hero .button{
         width: 70%

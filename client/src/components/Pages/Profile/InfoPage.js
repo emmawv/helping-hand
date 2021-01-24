@@ -41,10 +41,10 @@ class InfoPage extends Component {
                         {loggedUser.role === 'DOC'
                             ?
                             <>
-                                <Col xs={{ span: 10, offset: 1 }} lg={3}>
+                                <Col xs={{ span: 10, offset: 1 }} lg={{span: 3, offset:0}}>
                                     <img className='profilepic-info' src={loggedUser.profileImg} style={{ marginBottom: '20px' }} alt='profile pic' />
                                 </Col>
-                                <Col xs={{ span: 10, offset: 1 }} lg={3}>
+                                <Col xs={{ span: 10, offset: 1 }} lg={{ span: 3, offset: 0 }}>
                                     <p><strong>Nombre:</strong> {loggedUser.name}</p>
                                     <p><strong>Apellido:</strong> {loggedUser.surname}</p>
                                     <p><strong>Email:</strong> {loggedUser.email}</p>
@@ -52,7 +52,7 @@ class InfoPage extends Component {
                                     <p><strong>Sobre ti:</strong> {loggedUser.shortBio}</p>
                                     <p><strong>Tarifa:</strong> {loggedUser.price} €/hora</p>
                                 </Col>
-                                <Col xs={{ span: 10, offset: 1 }} lg={3}>
+                                <Col xs={{ span: 10, offset: 1 }} lg={{ span: 3, offset: 0 }}>
                                     <p><strong>Tipo de terapia:</strong> {loggedUser.meetType.length === 1 ? loggedUser.meetType[0] : loggedUser.meetType.map(elm => `${elm} | `)}</p>
                                     {loggedUser.practice.name ?
                                         <>
@@ -68,7 +68,7 @@ class InfoPage extends Component {
                                     </ul>
                                 </Col>
                                 <Col xs={{ span: 9, offset: 1 }} lg={4}>
-                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 50px 0' }} onClick={this.handleContactModal}> Eliminar cuenta</Button>
+                                    <Button type='button' variant='outline-danger' style={{ margin: '10px 10px 50px 0' }} onClick={() => this.handleDeleteModal(true)}> Eliminar cuenta</Button>
                                 </Col>
 
                             </>
