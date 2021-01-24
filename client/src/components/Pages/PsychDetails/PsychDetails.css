@@ -1,5 +1,6 @@
 .psych-details{
-    margin: 120px 0;
+    margin-top: 120px;
+    margin-bottom: 100px;
 }
 
 .psych-details .details-img img{
@@ -18,7 +19,7 @@
 }
 
 .back-link{
- text-decoration: none
+    text-decoration: none
 }
 
 .contact-btn, .contact-btn:focus, .contact-btn:visited{
