@@ -2,3 +2,7 @@ body{
     font-family: 'Montserrat', sans-serif;
     scroll-behavior: smooth;
 }
+
+main{
+    min-height: 90vh;
+}
